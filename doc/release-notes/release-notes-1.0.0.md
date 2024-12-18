@@ -45,7 +45,7 @@
 * Create new `about.png` with a Shibacoin logo
 * Add new design for `paper_wallet.png`
 * Remove Dogecoin explorer urls
-* Update tx urls in gui to point to the Shibacoin blockchain explorer PepeExplorer.com
+* Update tx urls in gui to point to the Shibacoin blockchain explorer ShibaExplorer.com
 
 ####Documentation
 
@@ -55,7 +55,7 @@
 * Change ticker symbol from `PPC` to `SHIC` in `readme.md`, man pages, and `amount.cpp`
 * Update `assets-attribution.md`
 * Update `gen-manpages.sh` to target the bash shell
-* Update readme files to correct urls and Pepe icon/text. Remove references to Shibacoin in the Dogecoin release notes. Move Dogecoin release notes to new `release-notes/dogecoin` folder.
+* Update readme files to correct urls and Shiba icon/text. Remove references to Shibacoin in the Dogecoin release notes. Move Dogecoin release notes to new `release-notes/dogecoin` folder.
 * Add link to official community Discord
 * Update `FAQ.md` to reflect Shibacoin changes
 * Update `README_windows.txt` to point to the Dogecoin wiki (The wiki for Dogecoin is a good guide for Shibacoin as well)
