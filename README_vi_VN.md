@@ -1,5 +1,5 @@
 <h1 align="center">
-<img src="https://i.imgur.com/yap2xAX.png" alt="Shibacoin" width="300"/>
+<img src="https://i.imgur.com/j6X1XyF.png" alt="Shibacoin" width="300"/>
 <br/><br/>
 Nhân Tố Shibacoin [SHIC, ₷]  
 </h1>
@@ -22,9 +22,9 @@ Shibacoin là một nhánh của Dogecoin. Vì sự quen thuộc, chúng tôi s�
 
 Thay đổi:
 
-* Địa chỉ bắt đầu bằng `P` thay vì `D`
+* Địa chỉ bắt đầu bằng `S` thay vì `D`
 * Các tính năng BIPS sẽ bắt đầu từ khối 1000
-* AuxPow bắt đầu từ khối 1500 (ID Chuỗi: 63)
+* AuxPow bắt đầu từ khối 1500 (ID Chuỗi: 74)
 * Giao diện đồ họa được thiết kế cho Shibacoin
 
 ## Sử Dụng 💻
