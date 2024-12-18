@@ -1,7 +1,7 @@
 <h1 align="center">
-<img src="https://i.imgur.com/j6X1XyF.png" alt="ShibaInucoin" width="300"/>
+<img src="https://i.imgur.com/j6X1XyF.png" alt="Shibacoin" width="300"/>
 <br/><br/>
-Shibacoin Core [SHIC, ₷]  
+ShibaInucoin Core [SHIC, ₷]  
 </h1>
 
 Select language: EN | [CN](./README_zh_CN.md) | [PT](./README_pt_BR.md) | [FA](./README_fa_IR.md) | [VI](./README_vi_VN.md)
