@@ -1,5 +1,5 @@
 <h1 align="center">
-<img src="https://i.imgur.com/yap2xAX.png" alt="Shibacoin" width="300"/>
+<img src="https://i.imgur.com/j6X1XyF.png" alt="Shibacoin" width="300"/>
 <br/><br/>
 Shibacoin Core [SHIC, ₷]  
 </h1>
@@ -22,9 +22,9 @@ Shibacoin 是 Dogecoin 的一个分支。为了保持熟悉性，我们将尝试
 
 变化：
 
-* 地址以 `P` 开头，而不是 `D`
+* 地址以 `S` 开头，而不是 `D`
 * BIPS 特性将从区块 1000 开始
-* AuxPow 从区块 1500 开始（链ID：63）
+* AuxPow 从区块 1500 开始（链ID：74）
 * GUI 针对 Shibacoin 进行了主题设计
 
 ## 用法 💻
