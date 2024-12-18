@@ -1,5 +1,5 @@
 <h1 align="center">
-<img src="https://imgur.com/j6X1XyF" alt="Shibacoin" width="300"/>
+<img src="https://i.imgur.com/j6X1XyF.png" alt="Shibacoin" width="300"/>
 <br/><br/>
 Shibacoin Core [SHIC, ₷]  
 </h1>
@@ -25,7 +25,7 @@ Changes:
 
 * Addresses start with `S` instead of `D`
 * BIPS features will start block 1000
-* AuxPow starts at block 100,000 (Chain ID: 63)
+* AuxPow starts at block 100,000 (Chain ID: 74)
 * GUI themed for Shibacoin
 
 ## Usage 💻
