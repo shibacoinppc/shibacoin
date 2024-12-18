@@ -1,0 +1,67 @@
+#!/bin/bash
+#
+#  shibacoind The shibacoin core server.
+#
+#
+# chkconfig: 345 80 20
+# description: shibacoind
+# processname: shibacoind
+#
+
+# Source function library.
+. /etc/init.d/functions
+
+# you can override defaults in /etc/sysconfig/shibacoind, see below
+if [ -f /etc/sysconfig/shibacoind ]; then
+        . /etc/sysconfig/shibacoind
+fi
+
+RETVAL=0
+
+prog=shibacoind
+# you can override the lockfile via SHIBACOIND_LOCKFILE in /etc/sysconfig/shibacoind
+lockfile=${SHIBACOIND_LOCKFILE-/var/lock/subsys/shibacoind}
+
+# shibacoind defaults to /usr/bin/shibacoind, override with SHIBACOIND_BIN
+shibacoind=${SHIBACOIND_BIN-/usr/bin/shibacoind}
+
+# shibacoind opts default to -disablewallet, override with SHIBACOIND_OPTS
+shibacoind_opts=${SHIBACOIND_OPTS--disablewallet}
+
+start() {
+    echo -n $"Starting $prog: "
+    daemon $DAEMONOPTS $shibacoind $shibacoind_opts
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch $lockfile
+    return $RETVAL
+}
+
+stop() {
+    echo -n $"Stopping $prog: "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f $lockfile
+    return $RETVAL
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status $prog
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    *)
+        echo "Usage: service $prog {start|stop|status|restart}"
+        exit 1
+        ;;
+esac

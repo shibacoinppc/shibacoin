@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Shibacoin Core
+Comment=Connect to the Shibacoin P2P Network
+Comment[de]=Verbinde mit dem Shibacoin peer-to-peer Netzwerk
+Comment[fr]=Shibacoin, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Shibacoin, eşten eşe kriptografik sanal para birimi
+Exec=shibacoin-qt %u
+Terminal=false
+Type=Application
+Icon=shibacoin128
+MimeType=x-scheme-handler/shibacoin;
+Categories=Office;Finance;

@@ -1,0 +1,6 @@
+usr/local/bin/shibacoin-qt usr/bin
+share/pixmaps/shibacoin32.xpm usr/share/pixmaps
+share/pixmaps/shibacoin16.xpm usr/share/pixmaps
+share/pixmaps/shibacoin128.png usr/share/pixmaps
+debian/shibacoin-qt.desktop usr/share/applications
+debian/shibacoin-qt.protocol usr/share/kde4/services/

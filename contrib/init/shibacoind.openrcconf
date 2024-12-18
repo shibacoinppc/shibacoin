@@ -1,0 +1,33 @@
+# /etc/conf.d/shibacoind: config file for /etc/init.d/shibacoind
+
+# Config file location
+#SHIBACOIND_CONFIGFILE="/etc/shibacoin/shibacoin.conf"
+
+# What directory to write pidfile to?  (created and owned by $SHIBACOIND_USER)
+#SHIBACOIND_PIDDIR="/var/run/shibacoind"
+
+# What filename to give the pidfile
+#SHIBACOIND_PIDFILE="${SHIBACOIND_PIDDIR}/shibacoind.pid"
+
+# Where to write shibacoind data (be mindful that the blockchain is large)
+#SHIBACOIND_DATADIR="/var/lib/shibacoind"
+
+# User and group to own shibacoind process
+#SHIBACOIND_USER="shibacoin"
+#SHIBACOIND_GROUP="shibacoin"
+
+# Path to shibacoind executable
+#SHIBACOIND_BIN="/usr/bin/shibacoind"
+
+# Nice value to run shibacoind under
+#SHIBACOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+SHIBACOIND_OPTS="-disablewallet"
+
+# The timeout in seconds OpenRC will wait for shibacoind to terminate
+# after a SIGTERM has been raised.
+# Note that this will be mapped as argument to start-stop-daemon's
+# '--retry' option, which means you can specify a retry schedule
+# here. For more information see man 8 start-stop-daemon.
+SHIBACOIND_SIGTERM_TIMEOUT=60

@@ -1,0 +1,11 @@
+[Protocol]
+exec=shibacoin-qt '%u'
+protocol=shibacoin
+input=none
+output=none
+helper=true
+listing=
+reading=false
+writing=false
+makedir=false
+deleting=false
