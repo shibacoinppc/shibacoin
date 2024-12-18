@@ -1,5 +1,5 @@
 <h1 align="center">
-<img src="https://i.imgur.com/j6X1XyF.png" alt="Shibacoin" width="300"/>
+<img src="https://i.imgur.com/j6X1XyF.png" alt="ShibaInucoin" width="300"/>
 <br/><br/>
 Shibacoin Core [SHIC, ₷]  
 </h1>
