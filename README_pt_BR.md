@@ -1,5 +1,5 @@
 <h1 align="center">
-<img src="https://i.imgur.com/yap2xAX.png" alt="Shibacoin" width="300"/>
+<img src="https://i.imgur.com/j6X1XyF.png" alt="Shibacoin" width="300"/>
 <br/><br/>
 Shibacoin Core [SHIC, ₷]  
 </h1>
@@ -22,7 +22,7 @@ O Shibacoin é um fork do Dogecoin. Para fins de familiaridade, tentaremos mante
 
 Mudanças:
 
-* Endereços começam com `P` em vez de `D`
+* Endereços começam com `S` em vez de `D`
 * Recursos BIPS começam no bloco gênese
 * GUI temático para o Shibacoin
 
