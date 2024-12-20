@@ -113,7 +113,7 @@ public:
         //consensus.nMinimumChainWork = uint256S("0000000000000000000000000000000000000000000000014c0089faf46fdf69"); // 40477
 	consensus.nMinimumChainWork = uint256S("0000000000000000000000000000000000000000000000000000000000010001");// Start
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0xff271edcc83f7d71e7a4e4b0a43b386a188e1470a28671cdbdc47e900118ac7f"); // 40477
+        consensus.defaultAssumeValid = uint256S("e3c878175bc2342f0440e1cf1ec07187e072e20b959a3be5a23400b8a7d9e032"); // 300
 
         // AuxPoW parameters
         consensus.nAuxpowChainId = 0x004a; // 74
@@ -179,6 +179,7 @@ public:
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
             ( 0, uint256S("0xff271edcc83f7d71e7a4e4b0a43b386a188e1470a28671cdbdc47e900118ac7f"))
+	    ( 300, uint256S("e3c878175bc2342f0440e1cf1ec07187e072e20b959a3be5a23400b8a7d9e032"))
         };
 
         chainTxData = ChainTxData{ };
