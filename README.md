@@ -95,7 +95,7 @@ about Shibacoin, give or ask for help, to share your project.
 
 Here are some places to visit:
 
-* [Discord](https://shibainucoin.net/discord)
+* [Discord](https://discord.com/invite/h3PrtfcKVJ)
 
 ## Frequently Asked Questions ❓
 
