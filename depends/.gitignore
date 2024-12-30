@@ -1,8 +1,10 @@
-# Ignore SDKs, work, built, sources etc.
 SDKs/
 work/
 built/
 sources/
-
-# But don't ignore anything inside depends folder
-!/*
+config.site
+x86_64*
+i686*
+mips*
+arm*
+aarch64*
