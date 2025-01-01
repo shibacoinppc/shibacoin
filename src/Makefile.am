@@ -100,6 +100,7 @@ BITCOIN_CORE_H = \
   core_io.h \
   core_memusage.h \
   cuckoocache.h \
+  fs.h \
   shibacoin.cpp \
   shibacoin.h \
   shibacoin-fees.cpp \
@@ -350,6 +351,7 @@ libshibacoin_util_a_SOURCES = \
   clientversion.cpp \
   compat/glibc_sanity.cpp \
   compat/glibcxx_sanity.cpp \
+  fs.cpp \
   compat/strnlen.cpp \
   random.cpp \
   rpc/protocol.cpp \
