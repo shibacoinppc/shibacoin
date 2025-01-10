@@ -25,7 +25,7 @@ Changes:
 
 * Addresses start with `S` instead of `D`
 * BIPS features will start block 1000
-* AuxPow starts at block 42,000 (Chain ID: 74)
+* AuxPow starts at block 24,000 (Chain ID: 74)
 * GUI themed for Shibacoin
 
 ## Usage 💻
