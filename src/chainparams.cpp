@@ -111,9 +111,9 @@ public:
 
         // The best chain should have at least this much work.
         //consensus.nMinimumChainWork = uint256S("0000000000000000000000000000000000000000000000014c0089faf46fdf69"); // 40477
-	consensus.nMinimumChainWork = uint256S("00000000000000000000000000000000000000000000000074610085e70b3f87");// block 20000
+	consensus.nMinimumChainWork = uint256S("000000000000000000000000000000000000000000000001291f1b4ea3fd59a8");// block 25800
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("2035d66dd969aa8ba3342e45dc949f032ddd5cca934a4d5f9c209958bcf455c6"); // 20000
+        consensus.defaultAssumeValid = uint256S("91e9d5d9c4ac1f236c1baf5f62fc8a96cfc0e844ae4739516ea53e0d6bb78f46"); // 25800
 
         // AuxPoW parameters
         consensus.nAuxpowChainId = 0x004a; // 74
@@ -182,6 +182,8 @@ public:
             ( 100, uint256S("0x4c5ad0c33d31bdbdb6f353231bfd95916ff380c648e6c3ff0a07513a34f7965b"))
             ( 1000, uint256S("0x1678b9c5af79d2d42264ba6ca6a0c94cd748ee0172b616b912aac0b62b7565ed"))
 	    ( 20000, uint256S("0x2035d66dd969aa8ba3342e45dc949f032ddd5cca934a4d5f9c209958bcf455c6"))
+	    ( 24000, uint256S("0xc771781bb5c79f53d17fcf4f541289e154cae38e4e4f4419ef1fa4c4c8be1d0e")) Pre-AuxPoW activation
+	    ( 25800, uint256S("0x91e9d5d9c4ac1f236c1baf5f62fc8a96cfc0e844ae4739516ea53e0d6bb78f46")) Post-AuxPoW checkpoint
         };
 
         chainTxData = ChainTxData{ };
