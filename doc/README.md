@@ -1,4 +1,4 @@
-Shibacoin Core 1.0.1
+Shibacoin Core 1.0.3
 =====================
 
 Development
