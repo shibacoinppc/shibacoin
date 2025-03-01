@@ -6,6 +6,7 @@
 
 #include "hash.h"
 #include "uint256.h"
+#include <script/standard.h>
 
 #include <assert.h>
 #include <stdint.h>
