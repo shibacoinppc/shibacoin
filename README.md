@@ -1,7 +1,7 @@
 <h1 align="center">
-<img src="https://i.imgur.com/j6X1XyF.png" alt="Shibacoin" width="300"/>
+<img src="https://i.imgur.com/txmTlvD.png" alt="Shibacoin" width="300"/>
 <br/><br/>
-ShibaInucoin Core [SHIC, ₷]  
+Shibacoin Core [SHIC]  
 </h1>
 
 Select language: EN | [CN](./README_zh_CN.md) | [PT](./README_pt_BR.md) | [FA](./README_fa_IR.md) | [VI](./README_vi_VN.md) | [JA](./README_ja_JP.md)
@@ -15,7 +15,7 @@ The Shibacoin Core software allows anyone to operate a node in the Shibacoin blo
 For information about the default fees used on the Shibacoin network, please
 refer to the [fee recommendation](doc/fee-recommendation.md).
 
-**Website:** [shibainucoin.net](https://shibainucoin.net)
+**Website:** [shibacoinshic.org](https://shibacoinshic.org)
 
 ## Dogecoin Differences
 
@@ -60,7 +60,7 @@ Main development resources:
 * [GitHub Discussion](https://github.com/shibacoinppc/shibacoin/discussions) is used
   to discuss features, planned and unplanned, related to both the development of
   the Shibacoin Core software, the underlying protocols and the SHIC asset.  
-* [ShibacoinDev subreddit](https://www.reddit.com/r/shibacoindev/)
+* [Shibacoin subreddit](https://www.reddit.com/r/Shibacoin_Shic/)
 
 ### Version strategy
 Version numbers are following ```major.minor.patch``` semantics.

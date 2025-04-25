@@ -1,7 +1,7 @@
 <h1 align="center">
-<img src="https://i.imgur.com/j6X1XyF.png" alt="Shibacoin" width="300"/>
+<img src="https://i.imgur.com/txmTlvD.png" alt="Shibacoin" width="300"/>
 <br/><br/>
-Shibacoin Core [SHIC, ₷]
+Shibacoin Core [SHIC]
 </h1>  
 
 انتخاب زبان: EN | [CN](./README_zh_CN.md) | [PT](./README_pt_BR.md) | [FA](./README_fa_IR.md) | [VI](./README_vi_VN.md)
@@ -14,7 +14,7 @@ Shibacoin Core [SHIC, ₷]
 
 برای اطلاعات در مورد کارمزد‌های پیشفرض استفاده شده در شبکه پپکوین، لطفاً به [توصیه کارمزد](doc/fee-recommendation.md) مراجعه کنید.
 
-**وب‌سایت:** [shibainucoin.net](https://shibainucoin.net)
+**وب‌سایت:** [shibacoinshic.org](https://shibacoinshic.org)
 
 ## تفاوت‌های دوجکوین
 
@@ -40,7 +40,7 @@ Shibacoin Core [SHIC, ₷]
 | عملکرد | مین‌نت | تست‌نت | رجتست |
 | :------- | ------: | ------: | ------: |
 | P2P      |   33864 |   44864 |   18444 |
-| RPC      |   33863 |   44863 |    18332 |
+| RPC      |   33863 |   44863 |   18332 |
 
 ## توسعه در حال ادامه 💻
 
@@ -50,7 +50,7 @@ Shibacoin Core [SHIC, ₷]
 
 * از [پروژه‌های GitHub](https://github.com/shibacoinppc/shibacoin/projects) برای پیگیری کارهای برنامه‌ریزی شده و در دست اجرا برای انتشارهای آتی استفاده می‌شود.
 * از [بحث در GitHub](https://github.com/shibacoinppc/shibacoin/discussions) برای بحث در مورد ویژگی‌ها، برنامه‌های برنامه‌ریزی و غیر برنامه‌ریزی مرتبط با توسعه هسته پپکوین، پروتکل‌های مبنایی و دارایی SHIC استفاده می‌شود.
-* [زیر‌ردیت ShibacoinDev](https://www.reddit.com/r/shibacoindev/)
+* [زیر‌ردیت Shibacoin](https://www.reddit.com/r/Shibacoin_Shic/)
 
 ### استراتژی نسخه
 شماره‌های نسخه به صورت `major.minor.patch` پیروی می‌شوند.
@@ -76,8 +76,8 @@ Shibacoin Core [SHIC, ₷]
 
 اینجا چند مکان برای بازدید هستند:
 
-* [r/Shibacoin](https://www.reddit.com/r/shibacoin/)
-* [Discord](https://shibainucoin.net/discord)
+* [r/Shibacoin_Shic](https://www.reddit.com/r/Shibacoin_Shic/)
+* [Discord](https://discord.com/invite/h3PrtfcKVJ)
 
 ## سوالات متداول ❓
 
