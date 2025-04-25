@@ -1,7 +1,7 @@
 <h1 align="center">
-<img src="https://i.imgur.com/j6X1XyF.png" alt="Shibacoin" width="300"/>
+<img src="https://i.imgur.com/txmTlvD.png" alt="Shibacoin" width="300"/>
 <br/><br/>
-Shibacoin Core [SHIC, ₷]  
+Shibacoin Core [SHIC]  
 </h1>
 
 Selecionar idioma: EN | [CN](./README_zh_CN.md) | [PT](./README_pt_BR.md) | [FA](./README_fa_IR.md) | [VI](./README_vi_VN.md)
@@ -14,7 +14,7 @@ Assim como o Dogecoin, o software Shibacoin Core permite que qualquer pessoa ope
 
 Para informações sobre as taxas padrão usadas na rede Shibacoin, por favor consulte a [recomendação de taxas](doc/fee-recommendation.md).
 
-**Website:** [shibainucoin.net](https://shibainucoin.net)
+**Website:** [shibacoinshic.org](https://shibacoinshic.org)
 
 ## Diferenças do Dogecoin
 
@@ -36,7 +36,7 @@ A API JSON-RPC fornecida pelo Shibacoin Core é autoexplicativa e pode ser naveg
 
 O Shibacoin Core, por padrão, usa a porta `33864` para comunicação peer-to-peer que é necessária para sincronizar a blockchain "mainnet" e se manter informado sobre novas transações e blocos. Adicionalmente, uma porta JSONRPC pode ser aberta, que por padrão é a porta `33863` para nós mainnet. É altamente recomendável não expor as portas RPC na internet pública.
 
-| Função | mainnet | testnet | regtest |
+| Função   | mainnet | testnet | regtest |
 | :------- | ------: | ------: | ------: |
 | P2P      |   33864 |   44864 |   18444 |
 | RPC      |   33863 |   44863 |   18332 |
@@ -49,7 +49,7 @@ Principais recursos de desenvolvimento:
 
 * [Projetos do GitHub](https://github.com/shibacoinppc/shibacoin/projects) são usados para seguir o trabalho planejado e em progresso para futuros lançamentos.
 * [Discussão do GitHub](https://github.com/shibacoinppc/shibacoin/discussions) é usada para discutir recursos, planejados e não planejados, relacionados tanto ao desenvolvimento do software Shibacoin Core, quanto aos protocolos subjacentes e o ativo SHIC.  
-* [Subreddit ShibacoinDev](https://www.reddit.com/r/shibacoindev/)
+* [Subreddit Shibacoin](https://www.reddit.com/r/Shibacoin_Shic/)
 
 ### Estratégia de versão
 Os números de versão seguem a semântica ```principal.menor.correção```.
@@ -76,8 +76,8 @@ Para ver o que está acontecendo, conhecer pessoas e discutir, encontrar o últi
 
 Aqui estão alguns lugares para visitar:
 
-* [r/Shibacoin](https://www.reddit.com/r/shibacoin/)
-* [Discord](https://shibainucoin.net/discord)
+* [r/Shibacoin_Shic](https://www.reddit.com/r/Shibacoin_Shic/)
+* [Discord](https://discord.com/invite/h3PrtfcKVJ)
 
 ## Perguntas Frequentes ❓
 

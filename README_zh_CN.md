@@ -1,7 +1,7 @@
 <h1 align="center">
-<img src="https://i.imgur.com/j6X1XyF.png" alt="Shibacoin" width="300"/>
+<img src="https://i.imgur.com/txmTlvD.png" alt="Shibacoin" width="300"/>
 <br/><br/>
-Shibacoin Core [SHIC, ₷]  
+Shibacoin Core [SHIC]  
 </h1>
 
 选择语言: EN | [CN](./README_zh_CN.md) | [PT](./README_pt_BR.md) | [FA](./README_fa_IR.md) | [VI](./README_vi_VN.md)
@@ -14,7 +14,7 @@ Shibacoin是由2013年原始Dogecoin shibes之一创建的社区关注的加密�
 
 有关Shibacoin网络上使用的默认费用的信息，请参阅[费用建议](doc/fee-recommendation.md)。
 
-**网站:** [shibainucoin.net](https://shibainucoin.net)
+**网站:** [shibacoinshic.org](https://shibacoinshic.org)
 
 ## Dogecoin 差异
 
@@ -50,7 +50,7 @@ Shibacoin Core是一个开源的、社区驱动的软件。开发过程是公开
 
 * [GitHub项目](https://github.com/shibacoinppc/shibacoin/projects) 用于跟踪即将发布的版本的计划和正在进行中的工作。
 * [GitHub讨论](https://github.com/shibacoinppc/shibacoin/discussions) 用于讨论与Shibacoin Core软件的开发、基础协议和SHIC资产相关的计划和非计划功能。
-* [ShibacoinDev subreddit](https://www.reddit.com/r/shibacoindev/)
+* [Shibacoin subreddit](https://www.reddit.com/r/Shibacoin_Shic/)
 
 ### 版本策略
 版本号遵循```主版本.次版本.修订版本```的语义。
@@ -77,8 +77,8 @@ Shibacoin Core是一个开源的、社区驱动的软件。开发过程是公开
 
 以下是一些值得参观的地方:
 
-* [r/Shibacoin](https://www.reddit.com/r/shibacoin/)
-* [Discord](https://shibainucoin.net/discord)
+* [r/Shibacoin_Shic](https://www.reddit.com/r/Shibacoin_Shic/)
+* [Discord](https://discord.com/invite/h3PrtfcKVJ)
 
 ## 常见问题解答 ❓
 

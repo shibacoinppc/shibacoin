@@ -1,7 +1,7 @@
 <h1 align="center">
-<img src="https://i.imgur.com/j6X1XyF.png" alt="Shibacoin" width="300"/>
+<img src="https://i.imgur.com/txmTlvD.png" alt="Shibacoin" width="300"/>
 <br/><br/>
-Shibacoin Core [SHIC, ₷]  
+Shibacoin Core [SHIC]  
 </h1>
 
 言語を選択: [EN](./README.md) | [CN](./README_zh_CN.md) | [PT](./README_pt_BR.md) | [FA](./README_fa_IR.md) | [VI](./README_vi_VN.md) | JA
@@ -14,7 +14,7 @@ Dogecoinと同様に、Shibacoin Coreソフトウェアは、誰でもShibacoin�
 
 Shibacoinネットワークで使用されるデフォルトの料金に関する情報については、[料金の推奨](doc/fee-recommendation.md)を参照してください。
 
-**ウェブサイト:** [shibainucoin.net](https://shibainucoin.net)
+**ウェブサイト:** [shibacoinshic.org](https://shibacoinshic.org)
 
 ## Dogecoinの違い
 
@@ -50,7 +50,7 @@ Shibacoin Coreはオープンソースでコミュニティ主導のソフトウ
 
 * [GitHubプロジェクト](https://github.com/shibacoinppc/shibacoin/projects)は、今後のリリースのための計画および進行中の作業を追跡するために使用されます。
 * [GitHubディスカッション](https://github.com/shibacoinppc/shibacoin/discussions)は、Shibacoin Coreソフトウェアの開発、基礎となるプロトコル、およびSHIC資産に関連する計画されたおよび計画されていない機能について議論するために使用されます。
-* [ShibacoinDev subreddit](https://www.reddit.com/r/shibacoindev/)
+* [Shibacoin subreddit](https://www.reddit.com/r/Shibacoin_Shic/)
 
 ### バージョン戦略
 バージョン番号は```major.minor.patch```のセマンティクスに従います。

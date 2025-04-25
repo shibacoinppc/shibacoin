@@ -1,7 +1,7 @@
 <h1 align="center">
-<img src="https://i.imgur.com/j6X1XyF.png" alt="Shibacoin" width="300"/>
+<img src="https://i.imgur.com/txmTlvD.png" alt="Shibacoin" width="300"/>
 <br/><br/>
-Nhân Tố Shibacoin [SHIC, ₷]  
+Nhân Tố Shibacoin [SHIC]  
 </h1>
 
 Chọn ngôn ngữ: EN | [CN](./README_zh_CN.md) | [PT](./README_pt_BR.md) | [FA](./README_fa_IR.md) | [VI](./README_vi_VN.md)
@@ -14,7 +14,7 @@ Giống như Dogecoin, phần mềm Nhân Tố Shibacoin cho phép bất kỳ ai
 
 Để biết thông tin về các mức phí mặc định được sử dụng trên mạng lưới Shibacoin, vui lòng tham khảo [đề xuất phí](doc/fee-recommendation.md).
 
-**Trang web:** [shibainucoin.net](https://shibainucoin.net)
+**Trang web:** [shibacoinshic.org](https://shibacoinshic.org)
 
 ## Sự Khác Biệt với Dogecoin
 
@@ -38,9 +38,9 @@ API JSON-RPC được cung cấp bởi Nhân Tố Shibacoin cho phép tự mô t
 Nhân Tố Shibacoin mặc định sử dụng cổng `33864` cho giao tiếp ngang hàng cần thiết để đồng bộ hóa chuỗi khối "mainnet" và cập nhật thông tin về giao dịch và khối mới. Ngoài ra, có thể mở một cổng JSONRPC, mặc định là cổng `33863` cho các nút mainnet. Rất khuyến nghị không tiết lộ các cổng RPC ra internet công cộng.
 
 | Chức năng | mainnet | testnet | regtest |
-| :------- | ------: | ------: | ------: |
-| P2P      |   33864 |   44864 |   18444 |
-| RPC      |   33863 |   44863 |   18332 |
+| :-------- | ------: | ------: | ------: |
+| P2P       |   33864 |   44864 |   18444 |
+| RPC       |   33863 |   44863 |   18332 |
 
 ## Phát Triển Liên Tục 💻
 
@@ -50,7 +50,7 @@ Các tài nguyên phát triển chính:
 
 * [Dự Án GitHub](https://github.com/shibacoinppc/shibacoin/projects) được sử dụng để theo dõi công việc đã được lên kế hoạch và đang tiến hành cho các bản phát hành sắp tới.
 * [Thảo Luận GitHub](https://github.com/shibacoinppc/shibacoin/discussions) được sử dụng để thảo luận về các tính năng, cả về những tính năng đã được lên kế hoạch và chưa được lên kế hoạch, liên quan đến cả phát triển phần mềm Nhân Tố Shibacoin, các giao thức cơ bản và tài sản SHIC.
-* [Subreddit ShibacoinDev](https://www.reddit.com/r/shibacoindev/)
+* [Subreddit Shibacoin](https://www.reddit.com/r/Shibacoin_Shic/)
 
 ### Chiến Lược Phiên Bản
 Các số phiên bản tuân thủ cú pháp ```major.minor.patch```.
@@ -77,8 +77,8 @@ Bạn có thể tham gia vào các cộng đồng trên các phương tiện tru
 
 Dưới đây là một số nơi bạn có thể thăm:
 
-* [r/Shibacoin](https://www.reddit.com/r/shibacoin/)
-* [Discord](https://shibainucoin.net/discord)
+* [r/Shibacoin_Shic](https://www.reddit.com/r/Shibacoin_Shic/)
+* [Discord](https://discord.com/invite/h3PrtfcKVJ)
 
 ## Câu Hỏi Thường Gặp ❓
 
