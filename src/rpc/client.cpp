@@ -142,8 +142,6 @@ static const CRPCConvertParam vRPCConvertParams[] =
     { "echojson", 7, "arg7" },
     { "echojson", 8, "arg8" },
     { "echojson", 9, "arg9" },
-    { "getaddressutxos", 1, "amount" },
-    { "getaddressutxos", 2, "includechaininfo" },
 };
 
 class CRPCConvertTable
