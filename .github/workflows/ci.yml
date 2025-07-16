@@ -223,13 +223,6 @@ jobs:
       options: ${{ matrix.container-options == '' && '-e 1SHIC=1SHIC' || matrix.container-options }}
 
     steps:
-      - name: Configure container
-        run: |
-          ln -snf /usr/share/zoneinfo/Etc/UTC /etc/localtime
-          echo Etc/UTC > /etc/timezone
-          mkdir -p $WINEPREFIX
-          uname -a
-
       - name: Pre install
         if: ${{ matrix.preinstall }}
         run: ${{ matrix.preinstall }}
