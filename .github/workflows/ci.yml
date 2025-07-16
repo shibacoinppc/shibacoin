@@ -23,6 +23,7 @@ jobs:
       PYTHON_DEBUG: "1"
       CACHE_NONCE: "1"
       WINEDEBUG: fixme-all
+      WINEPREFIX: /tmp/wineprefix/
       SDK_URL: https://depends.dogecoincore.org
       BIONIC_LIEF_WHL: lief-0.12.3-cp36-cp36m-linux_x86_64.whl
 
@@ -216,9 +217,19 @@ jobs:
             config-opts: "--enable-experimental --enable-scrypt-sse2 --with-intel-avx2 --with-gui=qt5 --enable-zmq --enable-glibc-back-compat --enable-reduce-exports"
             goal: install
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
+    container:
+      image: ${{ matrix.container }}
+      options: ${{ matrix.container-options == '' && '-e 1SHIC=1SHIC' || matrix.container-options }}
 
     steps:
+      - name: Configure container
+        run: |
+          ln -snf /usr/share/zoneinfo/Etc/UTC /etc/localtime
+          echo Etc/UTC > /etc/timezone
+          mkdir -p $WINEPREFIX
+          uname -a
+
       - name: Pre install
         if: ${{ matrix.preinstall }}
         run: ${{ matrix.preinstall }}
@@ -230,26 +241,19 @@ jobs:
                pkg-config bsdmainutils curl ca-certificates ccache rsync git \
                procps bison python3 python3-pip python3-setuptools python3-wheel
           sudo apt-get install ${{ matrix.packages }}
-          python3 -m pip install setuptools --upgrade
-
-      - name: Install custom lief wheel
-        if: matrix.os == 'ubuntu-18.04'
-        run: python3 -m pip install $SDK_URL/$BIONIC_LIEF_WHL
-
-      - name: Install standard lief wheel
-        if: matrix.os != 'ubuntu-18.04'
-        run: python3 -m pip install lief
+          python3 -m pip install setuptools==70.3.0 --upgrade
+          python3 -m pip install lief
 
       - name: Post install
         if: ${{ matrix.postinstall }}
         run: ${{ matrix.postinstall }}
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: SDK cache
         if: ${{ matrix.sdk }}
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         env:
           cache-name: sdk
         with:
@@ -269,7 +273,7 @@ jobs:
           tar -C depends/SDKs -xf depends/sdk-sources/${{ env.sdk-filename }}
 
       - name: Dependency cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         env:
           cache-name: depends
         with:
@@ -312,6 +316,10 @@ jobs:
       - name: Check symbols
         if: ${{ matrix.check-symbols }}
         run: make -C src check-symbols
+
+      - name: Cleanup qa artifacts
+        run: |
+          rm -rf qa/cache || true
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
