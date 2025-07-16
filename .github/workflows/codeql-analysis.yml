@@ -35,15 +35,14 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Update system
       run: |
         sudo apt-get update --yes
         sudo apt-get install build-essential libtool autotools-dev automake pkg-config bsdmainutils --yes
-
     - name: Dependency cache
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       env:
         cache-name: depends
       with:
@@ -55,9 +54,8 @@ jobs:
         pushd depends
         make -j4 HOST=x86_64-pc-linux-gnu
         popd
-
     - name: Initialize CodeQL
-      uses: github/codeql-action/init@v2
+      uses: github/codeql-action/init@v3
       with:
         languages: ${{ matrix.language }}
 
@@ -66,6 +64,5 @@ jobs:
        ./autogen.sh
        ./configure --prefix=`pwd`/depends/x86_64-pc-linux-gnu
        make -j4
-
     - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v2
+      uses: github/codeql-action/analyze@v3
