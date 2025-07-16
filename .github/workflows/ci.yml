@@ -15,7 +15,7 @@ jobs:
     name: ${{ matrix.name }}
 
     env:
-      MAKEJOBS: "-j4"
+      MAKEJOBS: "-j3"
       CHECK_DOC: "0"
       CCACHE_SIZE: "100M"
       CCACHE_TEMPDIR: /tmp/.ccache-temp
@@ -32,43 +32,31 @@ jobs:
         name:
           - aarch64-linux
           - aarch64-linux-experimental
+          - aarch64-linux-sha512-experimental
           - armhf-linux
           - i686-linux
           - i686-win
           - x86_64-linux-dbg
-          # - x86_64-linux-nowallet
+          - x86_64-linux-nowallet
           - x86_64-macos
           - x86_64-win
           - x86_64-win-experimental
-          - x86_64-linux
-          - x86_64-linux-experimental          
+          - x86_64-linux-experimental
         include:
-          - name: aarch64-linux
-            host: aarch64-linux-gnu
+          - name: i686-linux
+            host: i686-pc-linux-gnu
             os: ubuntu-20.04
-            packages: g++-aarch64-linux-gnu qemu-user-static qemu-user
-            run-bench: false
+            packages: g++-multilib bc python3-zmq
+            run-bench: true
             test-script: |
-              qemu-aarch64 -E LD_LIBRARY_PATH=/usr/aarch64-linux-gnu/lib/ /usr/aarch64-linux-gnu/lib/ld-linux-aarch64.so.1 src/test/test_shibacoin
+              make check $MAKEJOBS VERBOSE=1
+              qa/pull-tester/install-deps.sh
+              qa/pull-tester/rpc-tests.py --coverage
             check-security: true
             check-symbols: true
             dep-opts: "NO_QT=1"
             config-opts: "--enable-zmq --enable-glibc-back-compat LDFLAGS=-static-libstdc++"
             goal: install
-
-          - name: aarch64-linux-experimental
-            host: aarch64-linux-gnu
-            os: ubuntu-20.04
-            packages: g++-aarch64-linux-gnu qemu-user-static qemu-user
-            run-bench: false
-            test-script: |
-              qemu-aarch64 -E LD_LIBRARY_PATH=/usr/aarch64-linux-gnu/lib/ /usr/aarch64-linux-gnu/lib/ld-linux-aarch64.so.1 src/test/test_shibacoin
-            check-security: true
-            check-symbols: false
-            dep-opts: "NO_QT=1"
-            config-opts: "--enable-experimental --with-armv8-crypto --with-armv82-crypto --enable-zmq --enable-glibc-back-compat LDFLAGS=-static-libstdc++"
-            goal: install
-
           - name: armhf-linux
             host: arm-linux-gnueabihf
             os: ubuntu-20.04
@@ -81,22 +69,68 @@ jobs:
             dep-opts: "NO_QT=1"
             config-opts: "--enable-glibc-back-compat LDFLAGS=-static-libstdc++"
             goal: install
-
-          - name: i686-linux
-            host: i686-pc-linux-gnu
+          - name: aarch64-linux-experimental
+            host: aarch64-linux-gnu
             os: ubuntu-20.04
-            packages: g++-multilib bc python3-zmq
+            packages: g++-aarch64-linux-gnu qemu-user-static qemu-user
+            run-bench: false
+            test-script: |
+              qemu-aarch64 -E LD_LIBRARY_PATH=/usr/aarch64-linux-gnu/lib/ /usr/aarch64-linux-gnu/lib/ld-linux-aarch64.so.1 src/test/test_shibacoin
+            check-security: true
+            check-symbols: false
+            dep-opts: "NO_QT=1"
+            config-opts: "--enable-experimental --with-armv8-crypto --enable-zmq --enable-glibc-back-compat LDFLAGS=-static-libstdc++"
+            goal: install
+          - name: aarch64-linux-sha512-experimental
+            host: aarch64-linux-gnu
+            os: ubuntu-20.04
+            packages: g++-aarch64-linux-gnu qemu-user-static qemu-user
+            run-bench: false
+            test-script: |
+              qemu-aarch64 -E LD_LIBRARY_PATH=/usr/aarch64-linux-gnu/lib/ /usr/aarch64-linux-gnu/lib/ld-linux-aarch64.so.1 src/test/test_shibacoin
+            check-security: true
+            check-symbols: false
+            dep-opts: "NO_QT=1"
+            config-opts: "--enable-experimental --with-armv82-crypto --enable-zmq --enable-glibc-back-compat LDFLAGS=-static-libstdc++"
+            goal: install
+          - name: aarch64-linux
+            host: aarch64-linux-gnu
+            os: ubuntu-20.04
+            packages: g++-aarch64-linux-gnu qemu-user-static qemu-user
+            run-bench: false
+            test-script: |
+              qemu-aarch64 -E LD_LIBRARY_PATH=/usr/aarch64-linux-gnu/lib/ /usr/aarch64-linux-gnu/lib/ld-linux-aarch64.so.1 src/test/test_shibacoin
+            check-security: true
+            check-symbols: true
+            dep-opts: "NO_QT=1"
+            config-opts: "--enable-zmq --enable-glibc-back-compat LDFLAGS=-static-libstdc++"
+            goal: install
+          - name: x86_64-linux-nowallet
+            host: x86_64-unknown-linux-gnu
+            os: ubuntu-20.04
+            packages: python3
+            run-bench: true
+            test-script: |
+              make check $MAKEJOBS VERBOSE=1
+            check-security: true
+            check-symbols: true
+            dep-opts: "NO_WALLET=1"
+            config-opts: "--with-gui=qt5 --enable-glibc-back-compat --disable-wallet LDFLAGS=-static-libstdc++"
+            goal: install
+          - name: x86_64-linux-dbg
+            host: x86_64-unknown-linux-gnu
+            os: ubuntu-20.04
+            packages: bc python3-zmq
             run-bench: true
             test-script: |
               make check $MAKEJOBS VERBOSE=1
               qa/pull-tester/install-deps.sh
               qa/pull-tester/rpc-tests.py --coverage
             check-security: true
-            check-symbols: true
-            dep-opts: ""
-            config-opts: "--with-gui=qt5 --enable-zmq --enable-glibc-back-compat LDFLAGS=-static-libstdc++"
+            check-symbols: false
+            dep-opts: "DEBUG=1"
+            config-opts: "--with-gui=qt5 --enable-zmq --enable-glibc-back-compat CPPFLAGS=-DDEBUG_LOCKORDER"
             goal: install
-
           - name: i686-win
             host: i686-w64-mingw32
             os: ubuntu-20.04
@@ -123,48 +157,6 @@ jobs:
             dep-opts: ""
             config-opts: "--enable-gui=qt5"
             goal: install
-
-          - name: x86_64-linux-dbg
-            host: x86_64-unknown-linux-gnu
-            os: ubuntu-20.04
-            packages: bc python3-zmq
-            run-bench: true
-            test-script: |
-              make check $MAKEJOBS VERBOSE=1
-              qa/pull-tester/install-deps.sh
-              qa/pull-tester/rpc-tests.py --coverage
-            check-security: true
-            check-symbols: false
-            dep-opts: "DEBUG=1"
-            config-opts: "--with-gui=qt5 --enable-zmq --enable-glibc-back-compat CPPFLAGS=-DDEBUG_LOCKORDER"
-            goal: install
-
-          # - name: x86_64-linux-nowallet
-          #   host: x86_64-unknown-linux-gnu
-          #   os: ubuntu-20.04
-          #   packages: python3
-          #   run-bench: true
-          #   test-script: |
-          #     make check $MAKEJOBS VERBOSE=1
-          #   check-security: true
-          #   check-symbols: true
-          #   dep-opts: "NO_WALLET=1"
-          #   config-opts: "--with-gui=qt5 --enable-glibc-back-compat --disable-wallet LDFLAGS=-static-libstdc++"
-          #   goal: install
-
-          - name: x86_64-macos
-            host: x86_64-apple-darwin11
-            os: ubuntu-20.04
-            packages: cmake imagemagick libcap-dev librsvg2-bin libz-dev libtiff-tools libtinfo5 xorriso
-            run-bench: false
-            check-security: true
-            check-symbols: false
-            dep-opts: ""
-            config-opts: "--with-gui=qt5 --disable-tests"
-            goal: deploy
-            sdk: 10.11
-            sdk-shasum: "bec9d089ebf2e2dd59b1a811a38ec78ebd5da18cbbcd6ab39d1e59f64ac5033f"
-
           - name: x86_64-win
             host: x86_64-w64-mingw32
             os: ubuntu-20.04
@@ -182,7 +174,6 @@ jobs:
             dep-opts: ""
             config-opts: "--enable-gui=qt5"
             goal: install
-
           - name: x86_64-win-experimental
             host: x86_64-w64-mingw32
             os: ubuntu-20.04
@@ -200,20 +191,18 @@ jobs:
             dep-opts: "AVX2=1 MINGW=1"
             config-opts: "--enable-experimental --enable-scrypt-sse2 --with-intel-avx2 --with-gui=qt5"
             goal: install
-         
-          - name: x86_64-linux
-            host: x86_64-linux-gnu
+          - name: x86_64-macos
+            host: x86_64-apple-darwin11
             os: ubuntu-20.04
-            packages: bc python3-zmq
-            run-bench: true
-            test-script: |
-              make check $MAKEJOBS VERBOSE=1
-              qa/pull-tester/install-deps.sh
-              qa/pull-tester/rpc-tests.py --coverage
+            packages: cmake imagemagick libcap-dev librsvg2-bin libz-dev libtiff-tools libtinfo5 xorriso
+            run-bench: false
+            check-security: true
+            check-symbols: false
             dep-opts: ""
-            config-opts: "--with-gui=qt5 --enable-zmq"
-            goal: install
-
+            config-opts: "--with-gui=qt5 --disable-tests"
+            goal: deploy
+            sdk: 10.11
+            sdk-shasum: "bec9d089ebf2e2dd59b1a811a38ec78ebd5da18cbbcd6ab39d1e59f64ac5033f"
           - name: x86_64-linux-experimental
             host: x86_64-linux-gnu
             os: ubuntu-20.04
@@ -241,7 +230,7 @@ jobs:
                pkg-config bsdmainutils curl ca-certificates ccache rsync git \
                procps bison python3 python3-pip python3-setuptools python3-wheel
           sudo apt-get install ${{ matrix.packages }}
-          python3 -m pip install setuptools==70.3.0 --upgrade
+          python3 -m pip install setuptools --upgrade
 
       - name: Install custom lief wheel
         if: matrix.os == 'ubuntu-18.04'
@@ -312,9 +301,9 @@ jobs:
           src/bench/bench_shibacoin > ${{ matrix.name }}-bench.csv
           cat ${{ matrix.name }}-bench.csv
 
-      # - name: Run tests
-      #   if: ${{ matrix.test-script }}
-      #   run: ${{ matrix.test-script }}
+      - name: Run tests
+        if: ${{ matrix.test-script }}
+        run: ${{ matrix.test-script }}
 
       - name: Check security
         if: ${{ matrix.check-security }}
