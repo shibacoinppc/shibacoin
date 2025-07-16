@@ -69,14 +69,14 @@ jobs:
             config-opts: "--enable-zmq --enable-glibc-back-compat LDFLAGS=-static-libstdc++ --disable-tests"
             goal: install
           - name: x86_64-linux
-            host: x86_64-unknown-linux-gnu
+            host: x86_64-linux-gnu
             container: ubuntu:20.04
             packages: python3
             run-bench: false
             check-security: true
             check-symbols: false
             dep-opts: ""
-            config-opts: "--with-gui=qt5 --enable-glibc-back-compat LDFLAGS=-static-libstdc++ --disable-tests"
+            config-opts: "--enable-zmq --enable-glibc-back-compat LDFLAGS=-static-libstdc++ --disable-tests"
             goal: install
           - name: i686-win
             host: i686-w64-mingw32
@@ -127,7 +127,7 @@ jobs:
             sdk: 10.11
             sdk-shasum: "bec9d089ebf2e2dd59b1a811a38ec78ebd5da18cbbcd6ab39d1e59f64ac5033f"
 
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-22.04
     container:
       image: ${{ matrix.container }}
       options: ${{ matrix.container-options == '' && '-e 1SHIC=1SHIC' || matrix.container-options }}
