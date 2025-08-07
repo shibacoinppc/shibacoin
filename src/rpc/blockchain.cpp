@@ -13,7 +13,7 @@
 #include "coins.h"
 #include "consensus/validation.h"
 #include "core_io.h"
-#include "dogecoin.h"
+#include "shibacoin.h"
 #include "validation.h"
 #include "policy/policy.h"
 #include "primitives/transaction.h"
