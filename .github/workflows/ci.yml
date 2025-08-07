@@ -208,9 +208,10 @@ jobs:
         env:
           GIT_COMMIT_ID: ${{ github.sha }}
         run: |
+          SHORT_COMMIT=$(echo "$GIT_COMMIT_ID" | cut -c1-7)
           depends/${{ matrix.host }}/native/bin/ccache --max-size=$CCACHE_SIZE
           ./autogen.sh
-          ./configure --prefix=`pwd`/depends/${{ matrix.host }} ${{ matrix.config-opts }} --enable-reduce-exports CFLAGS="-DGIT_COMMIT_ID=\\\"${GIT_COMMIT_ID:0:7}\\\"" CXXFLAGS="-DGIT_COMMIT_ID=\\\"${GIT_COMMIT_ID:0:7}\\\"" || ( cat config.log && false)
+          ./configure --prefix=`pwd`/depends/${{ matrix.host }} ${{ matrix.config-opts }} --enable-reduce-exports CFLAGS="-DGIT_COMMIT_ID=\\\"$SHORT_COMMIT\\\"" CXXFLAGS="-DGIT_COMMIT_ID=\\\"$SHORT_COMMIT\\\"" || ( cat config.log && false)
           make $MAKEJOBS ${{ matrix.goal }} || ( echo "Build failure. Verbose build follows." && make ${{ matrix.goal }} V=1 ; false )
 
       - name: Verify Version
