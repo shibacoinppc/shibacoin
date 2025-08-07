@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Copyright (c) 2015-2016 The Bitcoin Core developers
-# Copyright (c) 2021 The Dogecoin Core developers
+# Copyright (c) 2021-2022 The Dogecoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -397,7 +397,7 @@ class FullBlockTest(ComparisonTestFramework):
         b26 = update_block(26, [])
         yield rejected(RejectResult(16, b'bad-cb-length'))
 
-        # Extend the b26 chain to make sure bitcoind isn't accepting b26
+        # Extend the b26 chain to make sure dogecoind isn't accepting b26
         b27 = block(27, spend=out[7])
         yield rejected(RejectResult(0, b'bad-prevblk'))
 
@@ -409,7 +409,7 @@ class FullBlockTest(ComparisonTestFramework):
         b28 = update_block(28, [])
         yield rejected(RejectResult(16, b'bad-cb-length'))
 
-        # Extend the b28 chain to make sure bitcoind isn't accepting b28
+        # Extend the b28 chain to make sure dogecoind isn't accepting b28
         b29 = block(29, spend=out[7])
         yield rejected(RejectResult(0, b'bad-prevblk'))
 
@@ -617,7 +617,7 @@ class FullBlockTest(ComparisonTestFramework):
         height = self.block_heights[self.tip.sha256] + 1
         coinbase = create_coinbase(height, self.coinbase_pubkey)
         b44 = CBlock()
-        b44.nVersion = 0x3F0004 # To get this number. Set your chain id in chainparams.cpp; Run python3 qa/rpc-tests/getblock.py --gen-test-data; In qa/rpc-tests/data/getblock.json take the version value (not the one that's equal to 1) and convert it to hex. That's this number.
+        b44.nVersion = 0x620004
         b44.nTime = self.tip.nTime + 1
         b44.hashPrevBlock = self.tip.sha256
         b44.nBits = 0x207fffff
@@ -632,7 +632,7 @@ class FullBlockTest(ComparisonTestFramework):
         # A block with a non-coinbase as the first tx
         non_coinbase = create_tx(out[15].tx, out[15].n, 1)
         b45 = CBlock()
-        b44.nVersion = 0x3F0004
+        b44.nVersion = 0x620004
         b45.nTime = self.tip.nTime + 1
         b45.hashPrevBlock = self.tip.sha256
         b45.nBits = 0x207fffff
@@ -648,7 +648,7 @@ class FullBlockTest(ComparisonTestFramework):
         # A block with no txns
         tip(44)
         b46 = CBlock()
-        b44.nVersion = 0x3F0004
+        b44.nVersion = 0x620004
         b46.nTime = b44.nTime+1
         b46.hashPrevBlock = b44.sha256
         b46.nBits = 0x207fffff
@@ -1247,7 +1247,7 @@ class FullBlockTest(ComparisonTestFramework):
         #  Test re-org of a week's worth of blocks (1088 blocks)
         #  This test takes a minute or two and can be accomplished in memory
         #
-        # Shibacoin: Currently this causes a node disconnect, and I'm not even sure that's wrong.
+        # Dogecoin: Currently this causes a node disconnect, and I'm not even sure that's wrong.
         # TODO: Investigate if this fails correctly, or needs fixing
         if self.options.runbarelyexpensive:
             tip(88)

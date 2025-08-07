@@ -1,6 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2022 The Dogecoin Core developers
+// Copyright (c) 2022-2024 The Dogecoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -81,7 +81,7 @@ public:
         consensus.nMajorityWindow = 2000;
         // BIP34 is never enforced in Shibacoin v2 blocks, so we enforce from v3
         consensus.BIP34Height = 1000;
-        consensus.BIP34Hash = uint256S("0x00"); //SHIC TODO: Replace this with block 1000 hash after mainnet launches
+        consensus.BIP34Hash = uint256S("0x1678b9c5af79d2d42264ba6ca6a0c94cd748ee0172b616b912aac0b62b7565ed"); //SHIC TODO: Replace this with block 1000 hash after mainnet launches
         consensus.BIP65Height = 1000;
         consensus.BIP66Height = 1000;
         consensus.powLimit = uint256S("0x00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // ~uint256(0) >> 20;
@@ -111,7 +111,7 @@ public:
 
         // The best chain should have at least this much work.
         //consensus.nMinimumChainWork = uint256S("0000000000000000000000000000000000000000000000014c0089faf46fdf69"); // 40477
-	consensus.nMinimumChainWork = uint256S("000000000000000000000000000000000000000000000001291f1b4ea3fd59a8");// block 25800
+	    consensus.nMinimumChainWork = uint256S("000000000000000000000000000000000000000000000001291f1b4ea3fd59a8");// block 25800
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("91e9d5d9c4ac1f236c1baf5f62fc8a96cfc0e844ae4739516ea53e0d6bb78f46"); // 25800
 

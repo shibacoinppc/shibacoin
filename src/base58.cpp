@@ -12,7 +12,6 @@
 #include <string.h>
 #include <vector>
 #include <string>
-#include <script/standard.h>
 #include <boost/variant/apply_visitor.hpp>
 #include <boost/variant/static_visitor.hpp>
 

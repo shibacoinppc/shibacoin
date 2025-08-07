@@ -6,7 +6,7 @@
 #include "chainparams.h"
 #include "coins.h"
 #include "consensus/merkle.h"
-#include "shibacoin.h"
+#include "dogecoin.h"
 #include "primitives/block.h"
 #include "script/script.h"
 #include "uint256.h"
@@ -181,7 +181,7 @@ CAuxpowBuilder::buildCoinbaseData(bool header, const std::vector<unsigned char>&
 
 BOOST_AUTO_TEST_CASE(check_auxpow)
 {
-    const Consensus::Params& params = Params().GetConsensus(371337);//SHIC TODO Magic number
+    const Consensus::Params& params = Params().GetConsensus(371337);
     CAuxpowBuilder builder(5, 42);
     CAuxPow auxpow;
 
@@ -359,7 +359,7 @@ BOOST_AUTO_TEST_CASE(auxpow_pow)
 {
     /* Use regtest parameters to allow mining with easy difficulty.  */
     SelectParams(CBaseChainParams::REGTEST);
-    const Consensus::Params& params = Params().GetConsensus(371337);//SHIC TODO Magic number
+    const Consensus::Params& params = Params().GetConsensus(371337);
 
     const arith_uint256 target = (~arith_uint256(0) >> 1);
     CBlockHeader block;
@@ -371,7 +371,7 @@ BOOST_AUTO_TEST_CASE(auxpow_pow)
     mineBlock(block, true);
     BOOST_CHECK(CheckAuxPowProofOfWork(block, params));
 
-    // Shibacoin block version 2 can be both AuxPoW and regular, so test 3
+    // Dogecoin block version 2 can be both AuxPoW and regular, so test 3
 
     block.nVersion = 3;
     mineBlock(block, true);

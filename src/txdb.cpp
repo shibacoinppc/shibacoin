@@ -9,7 +9,6 @@
 #include "hash.h"
 #include "pow.h"
 #include "uint256.h"
-#include <validation.h>
 
 #include <stdint.h>
 
@@ -24,12 +23,6 @@ static const char DB_BEST_BLOCK = 'B';
 static const char DB_FLAG = 'F';
 static const char DB_REINDEX_FLAG = 'R';
 static const char DB_LAST_BLOCK = 'l';
-
-static const char DB_ADDRESSINDEX = 'a';
- static const char DB_ADDRESSUNSPENTINDEX = 'u';
- static const char DB_TIMESTAMPINDEX = 's';
- static const char DB_BLOCKHASHINDEX = 'z';
- static const char DB_SPENTINDEX = 'p';
 
 
 CCoinsViewDB::CCoinsViewDB(size_t nCacheSize, bool fMemory, bool fWipe) : db(GetDataDir() / "chainstate", nCacheSize, fMemory, fWipe, true) 
@@ -180,7 +173,7 @@ bool CBlockTreeDB::ReadFlag(const std::string &name, bool &fValue) {
     return true;
 }
 
-bool CBlockTreeDB::LoadBlockIndexGuts(boost::function<CBlockIndex*(const uint256&)> insertBlockIndex)
+bool CBlockTreeDB::LoadBlockIndexGuts(std::function<CBlockIndex*(const uint256&)> insertBlockIndex)
 {
     std::unique_ptr<CDBIterator> pcursor(NewIterator());
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Copyright (c) 2014-2016 The Bitcoin Core developers
-# Copyright (c) 2021 The Dogecoin Core developers
+# Copyright (c) 2021-2022 The Dogecoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -62,7 +62,7 @@ def mine_large_blocks(node, n):
 
         # Build the block
         block = CBlock()
-        block.nVersion = 0x3F0004
+        block.nVersion = 0x620004
         block.hashPrevBlock = previousblockhash
         block.nTime = mine_large_blocks.nTime
         block.nBits = int('207fffff', 16)
