@@ -56,34 +56,7 @@ case $host in
      lt_cv_deplibs_check_method="pass_all"
   ;;
 esac
-
-AC_ARG_ENABLE([c++14],
-  [AS_HELP_STRING([--enable-c++14],
-  [enable compilation in c++14 mode (disabled by default)])],
-  [use_cxx14=$enableval],
-  [use_cxx14=no])
-
-AC_ARG_ENABLE([c++17],
-  [AS_HELP_STRING([--enable-c++17],
-  [enable compilation in c++17 mode (disabled by default)])],
-  [use_cxx17=$enableval],
-  [use_cxx17=no])
-
-AC_ARG_ENABLE([null-warnings],
-  [AS_HELP_STRING([--enable-null-warnings],
-  [warn about using NULL instead of nullptr (default is no)])],
-  [use_null_warnings=$enableval],
-  [use_null_warnings=no])
-
-dnl Require either of C++ 17, 14 or 11 (default) compiler (no GNU extensions)
-if test "x$use_cxx17" = xyes; then
-  if test "x$use_cxx14" = xyes; then
-    AC_MSG_ERROR("Both c++17 and c++14 are configured. Please configure only one standard")
-  fi
-  AX_CXX_COMPILE_STDCXX([17], [noext], [mandatory], [nodefault])
-elif test "x$use_cxx14" = xyes; then
-  AX_CXX_COMPILE_STDCXX([14], [noext], [mandatory], [nodefault])
-else
+dnl Require C++11 compiler (no GNU extensions)
 AX_CXX_COMPILE_STDCXX([11], [noext], [mandatory], [nodefault])
 fi
 
