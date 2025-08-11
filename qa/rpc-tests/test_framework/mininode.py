@@ -12,7 +12,7 @@
 # This python code was modified from ArtForz' public domain  half-a-node, as
 # found in the mini-node branch of http://github.com/jgarzik/pynode.
 #
-# NodeConn: an object which manages p2p connectivity to a dogecoin node
+# NodeConn: an object which manages p2p connectivity to a shibacoin node
 # NodeConnCB: a base class that describes the interface for receiving
 #             callbacks with network messages from a NodeConn
 # CBlock, CTransaction, CBlockHeader, CTxIn, CTxOut, etc....:
@@ -49,7 +49,7 @@ MAX_INV_SZ = 50000
 MAX_LOCATOR_SZ = 101
 MAX_BLOCK_BASE_SIZE = 1000000
 
-COIN = 100000000 # mlumin 5/2021: In terms of Dogecoin, 1 dogecoin or 100,000,000 koinu.
+COIN = 100000000 # mlumin 5/2021: In terms of Shibacoin, 1 shibacoin or 100,000,000 koinu.
 
 NODE_NETWORK = (1 << 0)
 NODE_GETUTXO = (1 << 1)
@@ -214,7 +214,7 @@ def FromHex(obj, hex_string):
 def ToHex(obj):
     return bytes_to_hex_str(obj.serialize())
 
-# Objects that map to dogecoind objects, which can be serialized/deserialized
+# Objects that map to shibacoind objects, which can be serialized/deserialized
 
 class CAddress(object):
     def __init__(self):
@@ -452,7 +452,7 @@ class CTransaction(object):
         if len(self.vin) == 0:
             flags = struct.unpack("<B", f.read(1))[0]
             # Not sure why flags can't be zero, but this
-            # matches the implementation in dogecoind
+            # matches the implementation in shibacoind
             if (flags != 0):
                 self.vin = deser_vector(f, CTxIn)
                 self.vout = deser_vector(f, CTxOut)
@@ -1667,7 +1667,7 @@ class NodeConn(asyncore.dispatcher):
             vt.addrFrom.port = 0
             self.send_message(vt, True)
 
-        print('MiniNode: Connecting to Dogecoin Node IP # ' + dstaddr + ':' \
+        print('MiniNode: Connecting to Shibacoin Node IP # ' + dstaddr + ':' \
             + str(dstport))
 
         try:
