@@ -149,7 +149,7 @@ jobs:
           apt-get update
           apt-get install -y build-essential libtool autotools-dev automake \
                pkg-config bsdmainutils curl ca-certificates ccache rsync git \
-               procps bison python3 python3-pip python3-setuptools python3-wheel
+               procps bison python3 python3-pip python3-setuptools python3-wheel autoconf-archive
           apt-get install -y ${{ matrix.packages }}
           python3 -m pip install setuptools==70.3.0 --upgrade
           python3 -m pip install lief
@@ -160,6 +160,8 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch full Git history for accurate commit information
 
       - name: SDK cache
         if: ${{ matrix.sdk }}
@@ -203,10 +205,13 @@ jobs:
           key: ${{ matrix.name }}-${{ env.cache-name }}-${{ hashFiles('**/configure.ac', '.github/workflows/ci.yml') }}
 
       - name: Build Shibacoin
+        env:
+          GIT_COMMIT_ID: ${{ github.sha }}
         run: |
+          SHORT_COMMIT=$(echo "$GIT_COMMIT_ID" | cut -c1-7)
           depends/${{ matrix.host }}/native/bin/ccache --max-size=$CCACHE_SIZE
           ./autogen.sh
-          ./configure --prefix=`pwd`/depends/${{ matrix.host }} ${{ matrix.config-opts }} --enable-reduce-exports || ( cat config.log && false)
+          ./configure --prefix=`pwd`/depends/${{ matrix.host }} ${{ matrix.config-opts }} --enable-reduce-exports CFLAGS="-DGIT_COMMIT_ID=\\\"$SHORT_COMMIT\\\"" CXXFLAGS="-DGIT_COMMIT_ID=\\\"$SHORT_COMMIT\\\"" || ( cat config.log && false)
           make $MAKEJOBS ${{ matrix.goal }} || ( echo "Build failure. Verbose build follows." && make ${{ matrix.goal }} V=1 ; false )
 
       - name: Run benchmark

@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# Copyright (c) 2021 The Dogecoin Core developers
+# Copyright (c) 2021 The Dogecoin Core Developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """CreateAuxBlock QA test.
@@ -52,7 +52,7 @@ class CreateAuxBlockTest(BitcoinTestFramework):
     assert_equal(reversedTarget, blocktemplate["target"])
 
     # Verify data that can be found in another way.
-    assert_equal(auxblock["chainid"], 63)
+    assert_equal(auxblock["chainid"], 98)
     assert_equal(auxblock["height"], self.nodes[0].getblockcount() + 1)
     assert_equal(auxblock["previousblockhash"], self.nodes[0].getblockhash(auxblock["height"] - 1))
 
@@ -82,25 +82,39 @@ class CreateAuxBlockTest(BitcoinTestFramework):
     assert_equal(auxblock["chainid"], auxblock3["chainid"])
     assert_equal(auxblock["target"], auxblock3["target"])
 
-    # If we receive a new block, the template cache must be emptied.
-    self.sync_all()
-    self.nodes[1].generate(1)
-    self.sync_all()
-
-    auxblock4 = self.nodes[0].createauxblock(dummy_p2pkh_addr)
-    assert auxblock["hash"] != auxblock4["hash"]
+    # Invalid format for hash - fails before checking auxpow
     try:
-      self.nodes[0].submitauxblock(auxblock["hash"], "x")
-      raise AssertionError("invalid block hash accepted")
+      self.nodes[0].submitauxblock("00", "x")
+      raise AssertionError("malformed hash accepted")
     except JSONRPCException as exc:
-      assert_equal(exc.error["code"], -8)
+      assert_equal(exc.error['code'], -8)
+      assert("hash must be of length 64" in exc.error["message"])
 
     # Invalid format for auxpow.
     try:
-      self.nodes[0].submitauxblock(auxblock4["hash"], "x")
+      self.nodes[0].submitauxblock(auxblock2['hash'], "x")
       raise AssertionError("malformed auxpow accepted")
     except JSONRPCException as exc:
-      assert_equal(exc.error["code"], -1)
+      assert_equal(exc.error['code'], -22)
+      assert("decode failed" in exc.error["message"])
+
+    # If we receive a new block, the old hash will be replaced.
+    self.sync_all()
+    self.nodes[1].generate(1)
+    self.sync_all()
+    auxblock2 = self.nodes[0].createauxblock(dummy_p2pkh_addr)
+    assert auxblock['hash'] != auxblock2['hash']
+    apow = auxpow.computeAuxpowWithChainId(auxblock['hash'], auxpow.reverseHex(auxblock['target']), "98", True)
+    try:
+        self.nodes[0].submitauxblock(auxblock['hash'], apow)
+        raise AssertionError("invalid block hash accepted")
+    except JSONRPCException as exc:
+        assert_equal(exc.error['code'], -8)
+        assert("block hash unknown" in exc.error["message"])
+
+    # Auxpow doesn't match given hash
+    res = self.nodes[0].submitauxblock(auxblock2['hash'], apow)
+    assert not res
 
     # Invalidate the block again, send a transaction and query for the
     # auxblock to solve that contains the transaction.
@@ -113,12 +127,12 @@ class CreateAuxBlockTest(BitcoinTestFramework):
     reversedTarget = auxpow.reverseHex(auxblock["target"])
 
     # Compute invalid auxpow.
-    apow = auxpow.computeAuxpowWithChainId(auxblock["hash"], reversedTarget, "63", False)
+    apow = auxpow.computeAuxpowWithChainId(auxblock["hash"], reversedTarget, "98", False)
     res = self.nodes[0].submitauxblock(auxblock["hash"], apow)
     assert not res
 
     # Compute and submit valid auxpow.
-    apow = auxpow.computeAuxpowWithChainId(auxblock["hash"], reversedTarget, "63", True)
+    apow = auxpow.computeAuxpowWithChainId(auxblock["hash"], reversedTarget, "98", True)
     res = self.nodes[0].submitauxblock(auxblock["hash"], apow)
     assert res
 
@@ -137,7 +151,7 @@ class CreateAuxBlockTest(BitcoinTestFramework):
     auxblock2 = self.nodes[0].createauxblock(dummy_p2sh_addr)
     auxblock3 = self.nodes[0].createauxblock(dummy_addr2)
     reversedTarget = auxpow.reverseHex(auxblock2["target"])
-    apow = auxpow.computeAuxpowWithChainId(auxblock2["hash"], reversedTarget, "63", True)
+    apow = auxpow.computeAuxpowWithChainId(auxblock2["hash"], reversedTarget, "98", True)
     res = self.nodes[0].submitauxblock(auxblock2["hash"], apow)
     assert res
 
@@ -149,7 +163,7 @@ class CreateAuxBlockTest(BitcoinTestFramework):
     # Solve the first p2pkh template before requesting a new auxblock
     # this succeeds but creates a chaintip fork
     reversedTarget = auxpow.reverseHex(auxblock1["target"])
-    apow = auxpow.computeAuxpowWithChainId(auxblock1["hash"], reversedTarget, "63", True)
+    apow = auxpow.computeAuxpowWithChainId(auxblock1["hash"], reversedTarget, "98", True)
     res = self.nodes[0].submitauxblock(auxblock1["hash"], apow)
     assert res
 
@@ -163,7 +177,7 @@ class CreateAuxBlockTest(BitcoinTestFramework):
     # Solve the last p2pkh template after requesting a new auxblock - this fails
     self.nodes[0].createauxblock(dummy_p2pkh_addr)
     reversedTarget = auxpow.reverseHex(auxblock3["target"])
-    apow = auxpow.computeAuxpowWithChainId(auxblock3["hash"], reversedTarget, "63", True)
+    apow = auxpow.computeAuxpowWithChainId(auxblock3["hash"], reversedTarget, "98", True)
     try:
       self.nodes[0].submitauxblock(auxblock3["hash"], apow)
       raise AssertionError("Outdated blockhash accepted")
@@ -180,7 +194,7 @@ class CreateAuxBlockTest(BitcoinTestFramework):
     assert "_target" in nmc_api_auxblock
 
     reversedTarget = auxpow.reverseHex(nmc_api_auxblock["_target"])
-    apow = auxpow.computeAuxpowWithChainId(nmc_api_auxblock["hash"], reversedTarget, "63", True)
+    apow = auxpow.computeAuxpowWithChainId(nmc_api_auxblock["hash"], reversedTarget, "98", True)
     res = self.nodes[1].submitauxblock(nmc_api_auxblock["hash"], apow)
     assert res
 

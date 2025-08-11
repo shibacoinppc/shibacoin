@@ -13,7 +13,7 @@ from test_framework import scrypt_auxpow
 
 class AuxPOWTest (BitcoinTestFramework):
     REWARD = 500000 # reward per block
-    CHAIN_ID = "3f"
+    CHAIN_ID = "62"
     DIGISHIELD_START = 10 # nHeight when digishield starts
     AUXPOW_START = 20 # nHeight when auxpow starts
     MATURITY_HEIGHT = 60 # number of blocks for mined transactions to mature
@@ -61,7 +61,7 @@ class AuxPOWTest (BitcoinTestFramework):
                 raise ex
         self.sync_all()
 
-        # 5. mine blocks until we're in in auxpow era
+        # 5. mine blocks until we're in auxpow era
         self.nodes[1].generate(self.AUXPOW_START - self.DIGISHIELD_START)
         self.sync_all()
 
