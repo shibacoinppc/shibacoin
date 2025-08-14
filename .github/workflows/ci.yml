@@ -247,4 +247,3 @@ jobs:
             depends/${{ matrix.host }}/share/man/man1/shibacoin*
             dist/Shibacoin-Qt.app
             Shibacoin-Core.dmg
-            ${{ matrix.name }}-bench.csv
