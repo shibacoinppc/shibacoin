@@ -745,24 +745,6 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
     return result;
 }
 
-class submitblock_StateCatcher : public CValidationInterface
-{
-public:
-    uint256 hash;
-    bool found;
-    CValidationState state;
-
-    submitblock_StateCatcher(const uint256 &hashIn) : hash(hashIn), found(false), state() {}
-
-protected:
-    virtual void BlockChecked(const CBlock& block, const CValidationState& stateIn) {
-        if (block.GetHash() != hash)
-            return;
-        found = true;
-        state = stateIn;
-    }
-};
-
 UniValue submitblock(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 2)
