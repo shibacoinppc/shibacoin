@@ -33,31 +33,32 @@ struct {
     unsigned char extranonce;
     unsigned int nonce;
 } blockinfo[] = {
-    {4, 0x127fad2d}, {2, 0x335d1b8f}, {1, 0x33d47094}, {2, 0x0b09ec28},
-    {1, 0x06cf723b}, {2, 0x039202bc}, {1, 0x0a2c9d46}, {2, 0x6225cb92},
-    {2, 0x6ea1513e}, {1, 0x4401bef3}, {1, 0x04d3a1d2}, {2, 0x1c512825},
-    {2, 0x54a03b14}, {1, 0x6048e27d}, {1, 0x1b926afc}, {2, 0x68c4afbd},
-    {2, 0x4439c313}, {1, 0x1263fceb}, {2, 0x834dee3e}, {2, 0xf21ed9dc},
-    {1, 0xdcdac434}, {2, 0x4c1945be}, {1, 0x6d42a594}, {3, 0x20927a30},
-    {3, 0xfd60f461}, {2, 0xd9ad2207}, {2, 0xe7f69d1a}, {1, 0x7fa9b932},
-    {2, 0xb0511080}, {1, 0xe7d24cd5}, {2, 0x3c57e668}, {2, 0x83bfdc2e},
-    {2, 0x6eeb4e10}, {2, 0x9cacbcfd}, {2, 0xb27ea98e}, {2, 0x6d57c5a7},
-    {1, 0x6deb4fa8}, {2, 0xabf625c6}, {2, 0x27e7c569}, {1, 0x89c6e991},
-    {2, 0xc359bc28}, {1, 0x6f25768d}, {2, 0x654a4c31}, {1, 0x5cd03bab},
-    {1, 0xda405f69}, {3, 0xfea453e5}, {2, 0x137d2c3a}, {5, 0xdee2f36e},
-    {1, 0xeccbcf26}, {5, 0x9237dbaa}, {1, 0xb7b9350b}, {1, 0xcd0c7eb2},
-    {1, 0xf5ea5a32}, {2, 0x3486a7f3}, {1, 0xd0a0f2be}, {1, 0xe1238144},
-    {1, 0x28b98a9b}, {1, 0xe79d02aa}, {5, 0xf4555d56}, {5, 0x74da0bb7},
-    {1, 0x18728b91}, {1, 0x07ed3a93}, {6, 0xd7a5e106}, {2, 0xba50b06c},
-    {2, 0x952c830d}, {1, 0xfbd1bb18}, {1, 0x36126967}, {1, 0xcce357d0},
-    {2, 0xff1ec2d6}, {2, 0xbed5dfc9}, {1, 0x0d21fdd7}, {1, 0xd744edea},
-    {1, 0xe09fc8f2}, {5, 0x2ad325c5}, {5, 0x466b6549}, {1, 0x10705d49},
-    {1, 0xf88478ce}, {2, 0xbfda6c4a}, {2, 0x731fe414}, {1, 0x6f1b362e},
-    {2, 0x6be709cf}, {1, 0x60553200}, {2, 0xf6a992f0}, {2, 0x1521f7f5},
-    {1, 0x8b440273}, {1, 0xe9ade0c8}, {1, 0x4d414618}, {5, 0x7b48070d},
-    {1, 0x1202ebae}, {1, 0xd23fe97e}, {1, 0x8d1d6505}, {1, 0xfafbaae3},
-    {1, 0xf200353e}, {1, 0xe77bd65e}, {1, 0x9fa32102}, {2, 0x68dfa747},
-    {0, 0x7c74d78e}, {1, 0x9b79cc6b}, {2, 0xad957cc2}, {2, 0x91acb818}
+    {2, 0x0003a807}, {12, 0x000317c6}, {1, 0x0006c339}, {1, 0x0012615f}, 
+    {1, 0x001eaaa7}, {1, 0x0039a340}, {3, 0x00109dbe}, {4, 0x00050b0e}, 
+    {1, 0x00053337}, {1, 0x001fd8de}, {3, 0x000c7df1}, {1, 0x0000f5cb}, 
+    {1, 0x000ff609}, {1, 0x000a81e6}, {1, 0x000b2811}, {1, 0x000a0ada}, 
+    {1, 0x0007192c}, {3, 0x000c7698}, {1, 0x00117efc}, {1, 0x0009a6b7}, 
+    {1, 0x003e3d2b}, {5, 0x0009ac29}, {2, 0x000a2661}, {3, 0x0012f6e6}, 
+    {4, 0x000ccb74}, {4, 0x000743f8}, {4, 0x000e9543}, {2, 0x001dba12}, 
+    {2, 0x003d223a}, {1, 0x00228416}, {3, 0x000677a1}, {2, 0x00144589}, 
+    {2, 0x000de667}, {1, 0x000789a1}, {3, 0x001e2ec3}, {4, 0x002161ee}, 
+    {1, 0x001151cb}, {3, 0x000a639e}, {1, 0x0027c35c}, {2, 0x0028c0b5}, 
+    {1, 0x0002d4bd}, {2, 0x0001bf45}, {1, 0x00083ac0}, {4, 0x0001f7ca}, 
+    {3, 0x00039b53}, {5, 0x00019a07}, {1, 0x0014f693}, {3, 0x000432ad}, 
+    {1, 0x0028406a}, {3, 0x00332e99}, {3, 0x0000242d}, {1, 0x000507cf}, 
+    {1, 0x0006f1c6}, {1, 0x0012b50e}, {1, 0x0015ddec}, {1, 0x0018b451}, 
+    {4, 0x000db113}, {1, 0x00009382}, {1, 0x00123d86}, {3, 0x000a853e}, 
+    {2, 0x004c4a44}, {1, 0x0015fd9a}, {1, 0x00098093}, {4, 0x001d1fbb}, 
+    {1, 0x000046bb}, {1, 0x0012e36a}, {4, 0x000330e5}, {1, 0x001b76d9}, 
+    {2, 0x00184361}, {2, 0x0000cafa}, {1, 0x000daf34}, {4, 0x003d6499}, 
+    {2, 0x00092455}, {7, 0x0006865e}, {1, 0x00071e24}, {2, 0x00002369}, 
+    {7, 0x0007a38a}, {5, 0x00102937}, {5, 0x0001674e}, {3, 0x000239f4}, 
+    {4, 0x000893e9}, {4, 0x0036215b}, {3, 0x0001d6b5}, {3, 0x0004425d}, 
+    {7, 0x001688f0}, {3, 0x00019b65}, {3, 0x0020b8b5}, {1, 0x00087efb}, 
+    {2, 0x000e62a2}, {8, 0x0012bac0}, {6, 0x00026b24}, {2, 0x0001b958}, 
+    {1, 0x00037339}, {3, 0x000a64ee}, {3, 0x00024ceb}, {3, 0x000e4af4}, 
+    {4, 0x000ac24e}, {2, 0x000d76c0}, {3, 0x00055a58}, {1, 0x000d13a5}
+    
 };
 
 CBlockIndex CreateBlockIndex(int nHeight)
@@ -92,7 +93,7 @@ void TestPackageSelection(const CChainParams& chainparams, CScript scriptPubKey,
     tx.vin[0].prevout.n = 0;
     tx.vout.resize(1);
     tx.vout[0].nValue = 5000000000LL - 1000;
-    // This tx has a low fee: 1000 satoshis
+    // This tx has a low fee: 1000 yelps
     uint256 hashParentTx = tx.GetHash(); // save this txid for later use
     mempool.addUnchecked(hashParentTx, entry.Fee(1000).Time(GetTime()).SpendsCoinbase(true).FromTx(tx));
 
@@ -185,8 +186,8 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
 {
     // Note that by default, these tests run with size accounting enabled.
     const CChainParams& chainparams = Params(CBaseChainParams::MAIN);
-    // changed this to dogecoin genesis pubkey script
-    CScript scriptPubKey = CScript() << ParseHex("040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9") << OP_CHECKSIG;
+    // changed this to shibacoin genesis pubkey script
+    CScript scriptPubKey = CScript() << ParseHex("0404721c4861d9047841a25fb469f98ba09e8c9134a4e0ebfb5c84f5e6969e35911d39e492dc2dda8dc84983059672cb11794bfd08d591b67b2e15cf6b074b32f0") << OP_CHECKSIG;
     std::unique_ptr<CBlockTemplate> pblocktemplate;
     CMutableTransaction tx,tx2;
     CScript script;
@@ -490,7 +491,7 @@ BOOST_AUTO_TEST_CASE(CreateNewBlock_validity)
     SetMockTime(0);
     mempool.clear();
 
-    // Dogecoin: Package selection doesn't work that way because our fees are fundamentally
+    // Shibacoin: Package selection doesn't work that way because our fees are fundamentally
     //           different. Need to rationalise in a later release.
     // TestPackageSelection(chainparams, scriptPubKey, txFirst);
 

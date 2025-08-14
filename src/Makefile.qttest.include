@@ -6,17 +6,15 @@ bin_PROGRAMS += qt/test/test_shibacoin-qt
 TESTS += qt/test/test_shibacoin-qt
 
 TEST_QT_MOC_CPP = \
-  qt/test/moc_compattests.cpp \
   qt/test/moc_rpcnestedtests.cpp \
   qt/test/moc_uritests.cpp
 
 TEST_QT_H = \
-  qt/test/compattests.h \
   qt/test/rpcnestedtests.h \
   qt/test/uritests.h
 
 qt_test_test_shibacoin_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
-  $(QT_INCLUDES) $(QT_TEST_INCLUDES) $(PROTOBUF_CFLAGS)
+  $(QT_INCLUDES) $(QT_TEST_INCLUDES)
 
 qt_test_test_shibacoin_qt_SOURCES = \
   qt/test/rpcnestedtests.cpp \

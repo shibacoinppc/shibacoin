@@ -745,8 +745,6 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
     return result;
 }
 
-
-
 UniValue submitblock(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() < 1 || request.params.size() > 2)
