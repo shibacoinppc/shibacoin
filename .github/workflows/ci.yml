@@ -95,7 +95,7 @@ jobs:
             check-security: true
             check-symbols: false
             dep-opts: ""
-            config-opts: "--enable-gui=qt5 --disable-tests"
+            config-opts: "--with-gui=qt5 --disable-tests"
             goal: install
           - name: x86_64-win
             host: x86_64-w64-mingw32
@@ -112,7 +112,7 @@ jobs:
             check-security: true
             check-symbols: false
             dep-opts: ""
-            config-opts: "--enable-gui=qt5 --disable-tests"
+            config-opts: "--with-gui=qt5 --disable-tests"
             goal: install
           - name: x86_64-macos
             host: x86_64-apple-darwin11
@@ -247,3 +247,4 @@ jobs:
             depends/${{ matrix.host }}/share/man/man1/shibacoin*
             dist/Shibacoin-Qt.app
             Shibacoin-Core.dmg
+            ${{ matrix.name }}-bench.csv

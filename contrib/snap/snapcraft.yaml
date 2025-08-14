@@ -1,6 +1,6 @@
 name: shibacoin-core
 # Running 'snapcraft register <name>' is advised
-version: '1.1.0'
+version: '1.2.1'
 summary: Reference client of Shibacoin, a peer-to-peer digital currency like Bitcoin.
 description: |
   Shibacoin is a community-driven cryptocurrency that was inspired by Dogecoin. The Shibacoin Core software allows anyone to operate a node in the Shibacoin blockchain networks and uses the Scrypt hashing method for Proof of Work. It is adapted from Bitcoin Core and other cryptocurrencies.

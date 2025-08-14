@@ -295,7 +295,7 @@ public:
 
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.push_back(CDNSSeedData("shibainucoin.net", "seeds-testnet.shibainucoin.net"));
+        vSeeds.push_back(CDNSSeedData("shibainucoin.net", "seeds-testnet.shibacoinshic.org"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,113); // 0x71
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196); // 0xc4
