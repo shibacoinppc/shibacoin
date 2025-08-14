@@ -1,5 +1,4 @@
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2022 The Dogecoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -13,7 +12,6 @@
 #include "compat.h"
 #include "consensus/consensus.h"
 #include "core_io.h"
-#include "fs.h"
 #include "keystore.h"
 #include "policy/policy.h"
 #include "primitives/transaction.h"
@@ -149,9 +147,8 @@ static void RegisterLoad(const std::string& strInput)
 
     std::string key = strInput.substr(0, pos);
     std::string filename = strInput.substr(pos + 1, std::string::npos);
-    fs::path pathFile = fs::path(filename);
 
-    FILE *f = fsbridge::fopen(pathFile, "r");
+    FILE *f = fopen(filename.c_str(), "r");
     if (!f) {
         std::string strErr = "Cannot open file " + filename;
         throw std::runtime_error(strErr);

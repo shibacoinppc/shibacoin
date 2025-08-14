@@ -1,11 +1,12 @@
 // Copyright (c) 2014-2016 The Bitcoin Core developers
-// Copyright (c) 2018-2022 The Dogecoin Core developers
+// Copyright (c) 2018 The Dogecoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "chain.h"
 #include "versionbits.h"
 #include "test/test_bitcoin.h"
+#include "test/test_random.h"
 #include "chainparams.h"
 #include "validation.h"
 #include "consensus/params.h"
@@ -81,7 +82,7 @@ public:
 
     VersionBitsTester& TestStateSinceHeight(int height) {
         for (int i = 0; i < CHECKERS; i++) {
-            if (InsecureRandBits(i) == 0) {
+            if ((insecure_rand() & ((1 << i) - 1)) == 0) {
                 BOOST_CHECK_MESSAGE(checker[i].GetStateSinceHeightFor(vpblock.empty() ? NULL : vpblock.back()) == height, strprintf("Test %i for StateSinceHeight", num));
             }
         }
@@ -91,7 +92,7 @@ public:
 
     VersionBitsTester& TestDefined() {
         for (int i = 0; i < CHECKERS; i++) {
-            if (InsecureRandBits(i) == 0) {
+            if ((insecure_rand() & ((1 << i) - 1)) == 0) {
                 BOOST_CHECK_MESSAGE(checker[i].GetStateFor(vpblock.empty() ? NULL : vpblock.back()) == THRESHOLD_DEFINED, strprintf("Test %i for DEFINED", num));
             }
         }
@@ -101,7 +102,7 @@ public:
 
     VersionBitsTester& TestStarted() {
         for (int i = 0; i < CHECKERS; i++) {
-            if (InsecureRandBits(i) == 0) {
+            if ((insecure_rand() & ((1 << i) - 1)) == 0) {
                 BOOST_CHECK_MESSAGE(checker[i].GetStateFor(vpblock.empty() ? NULL : vpblock.back()) == THRESHOLD_STARTED, strprintf("Test %i for STARTED", num));
             }
         }
@@ -111,7 +112,7 @@ public:
 
     VersionBitsTester& TestLockedIn() {
         for (int i = 0; i < CHECKERS; i++) {
-            if (InsecureRandBits(i) == 0) {
+            if ((insecure_rand() & ((1 << i) - 1)) == 0) {
                 BOOST_CHECK_MESSAGE(checker[i].GetStateFor(vpblock.empty() ? NULL : vpblock.back()) == THRESHOLD_LOCKED_IN, strprintf("Test %i for LOCKED_IN", num));
             }
         }
@@ -121,7 +122,7 @@ public:
 
     VersionBitsTester& TestActive() {
         for (int i = 0; i < CHECKERS; i++) {
-            if (InsecureRandBits(i) == 0) {
+            if ((insecure_rand() & ((1 << i) - 1)) == 0) {
                 BOOST_CHECK_MESSAGE(checker[i].GetStateFor(vpblock.empty() ? NULL : vpblock.back()) == THRESHOLD_ACTIVE, strprintf("Test %i for ACTIVE", num));
             }
         }
@@ -131,7 +132,7 @@ public:
 
     VersionBitsTester& TestFailed() {
         for (int i = 0; i < CHECKERS; i++) {
-            if (InsecureRandBits(i) == 0) {
+            if ((insecure_rand() & ((1 << i) - 1)) == 0) {
                 BOOST_CHECK_MESSAGE(checker[i].GetStateFor(vpblock.empty() ? NULL : vpblock.back()) == THRESHOLD_FAILED, strprintf("Test %i for FAILED", num));
             }
         }

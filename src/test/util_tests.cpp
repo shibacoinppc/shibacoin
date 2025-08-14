@@ -10,6 +10,7 @@
 #include "utilstrencodings.h"
 #include "utilmoneystr.h"
 #include "test/test_bitcoin.h"
+#include "test/test_random.h"
 
 #include <stdint.h>
 #include <vector>
@@ -242,7 +243,7 @@ BOOST_AUTO_TEST_CASE(util_IsHex)
 
 BOOST_AUTO_TEST_CASE(util_seed_insecure_rand)
 {
-    SeedInsecureRand(true);
+    seed_insecure_rand(true);
     for (int mod=2;mod<11;mod++)
     {
         int mask = 1;
@@ -256,7 +257,7 @@ BOOST_AUTO_TEST_CASE(util_seed_insecure_rand)
         for (int i = 0; i < 10000; i++) {
             uint32_t rval;
             do{
-                rval=InsecureRand32()&mask;
+                rval=insecure_rand()&mask;
             }while(rval>=(uint32_t)mod);
             count += rval==0;
         }

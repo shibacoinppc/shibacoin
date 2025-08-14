@@ -5,6 +5,7 @@
 #include "chain.h"
 #include "util.h"
 #include "test/test_bitcoin.h"
+#include "test/test_random.h"
 
 #include <vector>
 
@@ -34,8 +35,8 @@ BOOST_AUTO_TEST_CASE(skiplist_test)
     }
 
     for (int i=0; i < 1000; i++) {
-        int from = InsecureRandRange(SKIPLIST_LENGTH - 1);
-        int to = InsecureRandRange(from + 1);
+        int from = insecure_rand() % (SKIPLIST_LENGTH - 1);
+        int to = insecure_rand() % (from + 1);
 
         BOOST_CHECK(vIndex[SKIPLIST_LENGTH - 1].GetAncestor(from) == &vIndex[from]);
         BOOST_CHECK(vIndex[from].GetAncestor(to) == &vIndex[to]);
@@ -77,7 +78,7 @@ BOOST_AUTO_TEST_CASE(getlocator_test)
 
     // Test 100 random starting points for locators.
     for (int n=0; n<100; n++) {
-        int r = InsecureRandRange(150000);
+        int r = insecure_rand() % 150000;
         CBlockIndex* tip = (r < 100000) ? &vBlocksMain[r] : &vBlocksSide[r - 100000];
         CBlockLocator locator = chain.GetLocator(tip);
 
@@ -115,7 +116,7 @@ BOOST_AUTO_TEST_CASE(findearliestatleast_test)
         } else {
             // randomly choose something in the range [MTP, MTP*2]
             int64_t medianTimePast = vBlocksMain[i].GetMedianTimePast();
-            int r = InsecureRandRange(medianTimePast);
+            int r = insecure_rand() % medianTimePast;
             vBlocksMain[i].nTime = r + medianTimePast;
             vBlocksMain[i].nTimeMax = std::max(vBlocksMain[i].nTime, vBlocksMain[i-1].nTimeMax);
         }
@@ -134,7 +135,7 @@ BOOST_AUTO_TEST_CASE(findearliestatleast_test)
     // Verify that FindEarliestAtLeast is correct.
     for (unsigned int i=0; i<10000; ++i) {
         // Pick a random element in vBlocksMain.
-        int r = InsecureRandRange(vBlocksMain.size());
+        int r = insecure_rand() % vBlocksMain.size();
         int64_t test_time = vBlocksMain[r].nTime;
         CBlockIndex *ret = chain.FindEarliestAtLeast(test_time);
         BOOST_CHECK(ret->nTimeMax >= test_time);

@@ -8,8 +8,8 @@
 #ifndef BITCOIN_TEST_TESTUTIL_H
 #define BITCOIN_TEST_TESTUTIL_H
 
-#include "fs.h"
+#include <boost/filesystem/path.hpp>
 
-fs::path GetTempPath();
+boost::filesystem::path GetTempPath();
 
 #endif // BITCOIN_TEST_TESTUTIL_H

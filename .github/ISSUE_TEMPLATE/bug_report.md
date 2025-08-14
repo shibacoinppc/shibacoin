@@ -7,7 +7,7 @@ title: '[bug] '
 <!-- Please make sure you are posting an technical issue related to Shibacoin Core. --> 
 
 <!-- For general questions about Shibacoin or wallet recovery please use one of the various communities:
-* [Discord](https://discord.gg/bvyzmJex88) -->
+* [Discord](https://shibainucoin.net/discord) -->
 
 <!-- ISSUES MISSING IMPORTANT INFORMATION MAY BE CLOSED WITHOUT INVESTIGATION. -->
 

@@ -21,7 +21,7 @@
 #include "sync.h"
 #include "random.h"
 #include <index/addressindex.h>
-#include <index/spentindex.h>
+  #include <index/spentindex.h>
 
 #undef foreach
 #include "boost/multi_index_container.hpp"

@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2016 The Bitcoin Core developers
-// Copyright (c) 2021-2023 The Dogecoin Core developers
+// Copyright (c) 2021 The Dogecoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -273,7 +273,8 @@ void SendCoinsDialog::on_sendButton_clicked()
 
         QString recipientElement;
 
-
+        if (!rcp.paymentRequest.IsInitialized()) // normal payment
+        {
             if(rcp.label.length() > 0) // label with address
             {
                 QString displayedLabel = rcp.label;
@@ -285,6 +286,15 @@ void SendCoinsDialog::on_sendButton_clicked()
                 recipientElement.append(QString(" (%1)").arg(address));
             }
             else // just address
+            {
+                recipientElement = tr("%1 to %2").arg(amount, address);
+            }
+        }
+        else if(!rcp.authenticatedMerchant.isEmpty()) // authenticated payment request
+        {
+            recipientElement = tr("%1 to %2").arg(amount, GUIUtil::HtmlEscape(rcp.authenticatedMerchant));
+        }
+        else // unauthenticated payment request
         {
             recipientElement = tr("%1 to %2").arg(amount, address);
         }
@@ -536,6 +546,10 @@ void SendCoinsDialog::processSendCoinsReturn(const WalletModel::SendCoinsReturn 
         break;
     case WalletModel::AbsurdFee:
         msgParams.first = tr("A fee higher than %1 is considered an absurdly high fee.").arg(BitcoinUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), maxTxFee));
+        break;
+    case WalletModel::PaymentRequestExpired:
+        msgParams.first = tr("Payment request expired.");
+        msgParams.second = CClientUIInterface::MSG_ERROR;
         break;
     // included to prevent a compiler warning.
     case WalletModel::OK:

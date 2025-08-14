@@ -46,7 +46,7 @@ LT_INIT
 LT_LANG([C++])
 
 dnl Require C++11 compiler (no GNU extensions)
-AX_CXX_COMPILE_STDCXX([11], [noext], [mandatory], [nodefault])
+# AX_CXX_COMPILE_STDCXX([11], [noext], [mandatory], [nodefault]) /*This has been commented out for now as it is currently not needed*/
 
 case $host in
   *mingw*)

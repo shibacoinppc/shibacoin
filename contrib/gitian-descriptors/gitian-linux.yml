@@ -1,5 +1,5 @@
 ---
-name: "shibacoin-linux-1.1.0"
+name: "shibacoin-linux-1.0.1"
 enable_cache: true
 suites:
 - "focal"

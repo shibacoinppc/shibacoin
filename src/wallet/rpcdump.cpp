@@ -1,11 +1,10 @@
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2022-2023 The Dogecoin Core developers
+// Copyright (c) 2022 The Dogecoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "base58.h"
 #include "chain.h"
-#include "fs.h"
 #include "rpc/server.h"
 #include "init.h"
 #include "validation.h"
@@ -24,6 +23,8 @@
 
 #include <boost/algorithm/string.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
+#include <boost/filesystem.hpp>
+#include <boost/filesystem/path.hpp>
 
 #include <univalue.h>
 
@@ -609,9 +610,9 @@ UniValue dumpwallet(const JSONRPCRequest& request)
     ofstream file;
 
     string userFilename = request.params[0].get_str();
-    fs::path path = GetBackupDirFromInput(userFilename);
+    boost::filesystem::path path = GetBackupDirFromInput(userFilename);
 
-    if (fs::exists(path))
+    if (boost::filesystem::exists(path))
         throw JSONRPCError(RPC_INVALID_PARAMETER, "Wallet dump file already exists; not overwriting");
 
     file.open(path.string());

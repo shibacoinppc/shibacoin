@@ -1,5 +1,5 @@
 # ===========================================================================
-#        https://www.gnu.org/software/autoconf-archive/ax_pthread.html
+#        http://www.gnu.org/software/autoconf-archive/ax_pthread.html
 # ===========================================================================
 #
 # SYNOPSIS
@@ -14,24 +14,20 @@
 #   flags that are needed. (The user can also force certain compiler
 #   flags/libs to be tested by setting these environment variables.)
 #
-#   Also sets PTHREAD_CC and PTHREAD_CXX to any special C compiler that is
-#   needed for multi-threaded programs (defaults to the value of CC
-#   respectively CXX otherwise). (This is necessary on e.g. AIX to use the
-#   special cc_r/CC_r compiler alias.)
+#   Also sets PTHREAD_CC to any special C compiler that is needed for
+#   multi-threaded programs (defaults to the value of CC otherwise). (This
+#   is necessary on AIX to use the special cc_r compiler alias.)
 #
 #   NOTE: You are assumed to not only compile your program with these flags,
 #   but also to link with them as well. For example, you might link with
 #   $PTHREAD_CC $CFLAGS $PTHREAD_CFLAGS $LDFLAGS ... $PTHREAD_LIBS $LIBS
-#   $PTHREAD_CXX $CXXFLAGS $PTHREAD_CFLAGS $LDFLAGS ... $PTHREAD_LIBS $LIBS
 #
 #   If you are only building threaded programs, you may wish to use these
 #   variables in your default LIBS, CFLAGS, and CC:
 #
 #     LIBS="$PTHREAD_LIBS $LIBS"
 #     CFLAGS="$CFLAGS $PTHREAD_CFLAGS"
-#     CXXFLAGS="$CXXFLAGS $PTHREAD_CFLAGS"
 #     CC="$PTHREAD_CC"
-#     CXX="$PTHREAD_CXX"
 #
 #   In addition, if the PTHREAD_CREATE_JOINABLE thread-attribute constant
 #   has a nonstandard name, this macro defines PTHREAD_CREATE_JOINABLE to
@@ -59,7 +55,6 @@
 #
 #   Copyright (c) 2008 Steven G. Johnson <stevenj@alum.mit.edu>
 #   Copyright (c) 2011 Daniel Richard G. <skunk@iSKUNK.ORG>
-#   Copyright (c) 2019 Marc Stevens <marc.stevens@cwi.nl>
 #
 #   This program is free software: you can redistribute it and/or modify it
 #   under the terms of the GNU General Public License as published by the
@@ -72,7 +67,7 @@
 #   Public License for more details.
 #
 #   You should have received a copy of the GNU General Public License along
-#   with this program. If not, see <https://www.gnu.org/licenses/>.
+#   with this program. If not, see <http://www.gnu.org/licenses/>.
 #
 #   As a special exception, the respective Autoconf Macro's copyright owner
 #   gives unlimited permission to copy, distribute and modify the configure
@@ -128,12 +123,10 @@ fi
 # (e.g. DEC) have both -lpthread and -lpthreads, where one of the
 # libraries is broken (non-POSIX).
 
-# Create a list of thread flags to try. Items with a "," contain both
-# C compiler flags (before ",") and linker flags (after ","). Other items
-# starting with a "-" are C compiler flags, and remaining items are
-# library names, except for "none" which indicates that we try without
-# any flags at all, and "pthread-config" which is a program returning
-# the flags for the Pth emulation library.
+# Create a list of thread flags to try.  Items starting with a "-" are
+# C compiler flags, and other items are library names, except for "none"
+# which indicates that we try without any flags at all, and "pthread-config"
+# which is a program returning the flags for the Pth emulation library.
 
 ax_pthread_flags="pthreads none -Kthread -pthread -pthreads -mthreads pthread --thread-safe -mt pthread-config"
 

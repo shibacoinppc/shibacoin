@@ -50,7 +50,7 @@ static const int MAX_URI_LENGTH = 255;
 #define SPINNER_FRAMES 36
 
 #define QAPP_ORG_NAME "Shibacoin"
-#define QAPP_ORG_DOMAIN "shibacoinshic.org"
+#define QAPP_ORG_DOMAIN "shibainucoin.net"
 #define QAPP_APP_NAME_DEFAULT "Shibacoin-Qt"
 #define QAPP_APP_NAME_TESTNET "Shibacoin-Qt-testnet"
 

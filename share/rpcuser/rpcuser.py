@@ -1,36 +1,41 @@
-#!/usr/bin/env python3
-# Copyright (c) 2015-2021 The Bitcoin Core developers
-# Copyright (c) 2023 The Dogecoin Core developers
+#!/usr/bin/env python3 
+# Copyright (c) 2015-2016 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying 
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
+import hashlib
 import sys
-from secrets import token_hex, token_urlsafe
+import os
+from random import SystemRandom
+import base64
 import hmac
-
-def generate_salt(size):
-    """Create size byte hex salt"""
-    return token_hex(size)
-
-def generate_password():
-    """Create 32 byte b64 password"""
-    return token_urlsafe(32)
-
-def password_to_hmac(salt, password):
-    m = hmac.new(salt.encode('utf-8'), password.encode('utf-8'), 'SHA256')
-    return m.hexdigest()
 
 if len(sys.argv) < 2:
     sys.stderr.write('Please include username as an argument.\n')
     sys.exit(0)
 
 username = sys.argv[1]
-password = generate_password()
 
-# Create 16 byte hex salt
-salt = generate_salt(16)
-password_hmac = password_to_hmac(salt, password)
+#This uses os.urandom() underneath
+cryptogen = SystemRandom()
 
-print('String to be appended to shibacoin.conf:')
-print(f'rpcauth={username}:{salt}${password_hmac}')
-print(f'Your password:\n{password}')
+#Create 16 byte hex salt
+salt_sequence = [cryptogen.randrange(256) for i in range(16)]
+hexseq = list(map(hex, salt_sequence))
+salt = "".join([x[2:] for x in hexseq])
+
+#Create 32 byte b64 password
+password = base64.urlsafe_b64encode(os.urandom(32))
+
+digestmod = hashlib.sha256
+
+if sys.version_info.major >= 3:
+    password = password.decode('utf-8')
+    digestmod = 'SHA256'
+ 
+m = hmac.new(bytearray(salt, 'utf-8'), bytearray(password, 'utf-8'), digestmod)
+result = m.hexdigest()
+
+print("String to be appended to dogecoin.conf")
+print("rpcauth="+username+":"+salt+"$"+result)
+print("Your password:\n"+password)

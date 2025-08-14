@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2022-2023 The Dogecoin Core developers
+// Copyright (c) 2022 The Dogecoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -21,6 +21,7 @@
 #include "fs.h"
 #include "httpserver.h"
 #include "httprpc.h"
+#include <boost/filesystem.hpp>
 #include "key.h"
 #include "validation.h"
 #include "miner.h"
@@ -58,12 +59,12 @@
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/algorithm/string/split.hpp>
 #include <boost/bind/bind.hpp>
+#include <boost/filesystem.hpp>
+#include <boost/function.hpp>
 #include <boost/interprocess/sync/file_lock.hpp>
 #include <boost/lexical_cast.hpp>
 #include <boost/thread.hpp>
 #include <openssl/crypto.h>
-
-#include <functional>  // for std::function
 
 #if ENABLE_ZMQ
 #include "zmq/zmqnotificationinterface.h"
@@ -519,7 +520,7 @@ std::string HelpMessage(HelpMessageMode mode)
 std::string LicenseInfo()
 {
     const std::string URL_SOURCE_CODE = "<https://github.com/shibacoinppc/shibacoin>";
-    const std::string URL_WEBSITE = "<https://shibacoinshic.org>";
+    const std::string URL_WEBSITE = "<https://shibainucoin.net>";
 
     return CopyrightHolders(strprintf(_("Copyright (C) %i-%i"), 2013, COPYRIGHT_YEAR) + " ") + "\n" +
            "\n" +
@@ -701,13 +702,6 @@ bool InitSanityCheck(void)
         return false;
     }
 
-    if (!glibc_sanity_test() || !glibcxx_sanity_test())
-        return false;
-
-    if (!Random_SanityCheck()) {
-        InitError("OS cryptographic RNG sanity check failure. Aborting.");
-        return false;
-    }
 
     return true;
 }
@@ -1192,7 +1186,6 @@ bool AppInitSanityChecks()
     // ********************************************************* Step 4: sanity checks
 
     // Initialize elliptic curve code
-    RandomInit();
     ECC_Start();
     globalVerifyHandle.reset(new ECCVerifyHandle());
 

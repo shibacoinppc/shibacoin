@@ -11,7 +11,6 @@
 #include "util.h"
 
 #include "chainparamsbase.h"
-#include "fs.h"
 #include "random.h"
 #include "serialize.h"
 #include "sync.h"
@@ -81,6 +80,8 @@
 #include <boost/algorithm/string/case_conv.hpp> // for to_lower()
 #include <boost/algorithm/string/join.hpp>
 #include <boost/algorithm/string/predicate.hpp> // for startswith() and endswith()
+#include <boost/filesystem.hpp>
+#include <boost/filesystem/fstream.hpp>
 #include <boost/foreach.hpp>
 #include <boost/program_options/detail/config_file.hpp>
 #include <boost/program_options/parsers.hpp>
@@ -102,9 +103,6 @@ namespace boost {
 } // namespace boost
 
 using namespace std;
-
-// Application startup time (used for uptime calculation)
-const int64_t nStartupTime = GetTime();
 
 const char * const BITCOIN_CONF_FILENAME = "shibacoin.conf";
 const char * const BITCOIN_PID_FILENAME = "shibacoind.pid";
@@ -219,8 +217,8 @@ void OpenDebugLog()
 
     assert(fileout == NULL);
     assert(vMsgsBeforeOpenLog);
-    fs::path pathDebug = GetDataDir() / "debug.log";
-    fileout = fsbridge::fopen(pathDebug, "a");
+    boost::filesystem::path pathDebug = GetDataDir() / "debug.log";
+    fileout = fopen(pathDebug.string().c_str(), "a");
     if (fileout) {
         setbuf(fileout, NULL); // unbuffered
         // dump buffered messages from before we opened the log
@@ -324,8 +322,8 @@ int LogPrintStr(const std::string &str)
             // reopen the log file, if requested
             if (fReopenDebugLog) {
                 fReopenDebugLog = false;
-                fs::path pathDebug = GetDataDir() / "debug.log";
-                if (fsbridge::freopen(pathDebug,"a",fileout) != NULL)
+                boost::filesystem::path pathDebug = GetDataDir() / "debug.log";
+                if (freopen(pathDebug.string().c_str(),"a",fileout) != NULL)
                     setbuf(fileout, NULL); // unbuffered
             }
 
@@ -482,7 +480,7 @@ void PrintExceptionContinue(const std::exception* pex, const char* pszThread)
     fprintf(stderr, "\n\n************************\n%s\n", message.c_str());
 }
 
-fs::path GetDefaultDataDir()
+boost::filesystem::path GetDefaultDataDir()
 {
     namespace fs = boost::filesystem;
     // Windows < Vista: C:\Documents and Settings\Username\Application Data\Bitcoin
@@ -509,12 +507,14 @@ fs::path GetDefaultDataDir()
 #endif
 }
 
-static fs::path pathCached;
-static fs::path pathCachedNetSpecific;
+static boost::filesystem::path pathCached;
+static boost::filesystem::path pathCachedNetSpecific;
 static CCriticalSection csPathCached;
 
-const fs::path &GetDataDir(bool fNetSpecific)
+const boost::filesystem::path &GetDataDir(bool fNetSpecific)
 {
+    namespace fs = boost::filesystem;
+
     LOCK(csPathCached);
 
     fs::path &path = fNetSpecific ? pathCachedNetSpecific : pathCached;
@@ -545,15 +545,16 @@ void ClearDatadirCache()
 {
     LOCK(csPathCached);
 
-    pathCached = fs::path();
-    pathCachedNetSpecific = fs::path();
+    pathCached = boost::filesystem::path();
+    pathCachedNetSpecific = boost::filesystem::path();
 }
 
-static fs::path backupPathCached;
+static boost::filesystem::path backupPathCached;
 static CCriticalSection csBackupPathCached;
 
-const fs::path &GetBackupDir()
+const boost::filesystem::path &GetBackupDir()
 {
+    namespace fs = boost::filesystem;
     LOCK(csBackupPathCached);
 
     fs::path &path = backupPathCached;
@@ -586,10 +587,10 @@ const fs::path &GetBackupDir()
     return path;
 }
 
-fs::path GetConfigFile(const std::string& confPath)
+boost::filesystem::path GetConfigFile(const std::string& confPath)
 {
-    fs::path pathConfigFile(confPath);
-    if (!pathConfigFile.is_absolute())
+    boost::filesystem::path pathConfigFile(confPath);
+    if (!pathConfigFile.is_complete())
         pathConfigFile = GetDataDir(false) / pathConfigFile;
 
     return pathConfigFile;
@@ -597,7 +598,7 @@ fs::path GetConfigFile(const std::string& confPath)
 
 void ReadConfigFile(const std::string& confPath)
 {
-    fs::ifstream streamConfig(GetConfigFile(confPath));
+    boost::filesystem::ifstream streamConfig(GetConfigFile(confPath));
     if (!streamConfig.good())
         return; // No bitcoin.conf file is OK
 
@@ -622,16 +623,16 @@ void ReadConfigFile(const std::string& confPath)
 }
 
 #ifndef WIN32
-fs::path GetPidFile()
+boost::filesystem::path GetPidFile()
 {
-    fs::path pathPidFile(GetArg("-pid", BITCOIN_PID_FILENAME));
-    if (!pathPidFile.is_absolute()) pathPidFile = GetDataDir() / pathPidFile;
+    boost::filesystem::path pathPidFile(GetArg("-pid", BITCOIN_PID_FILENAME));
+    if (!pathPidFile.is_complete()) pathPidFile = GetDataDir() / pathPidFile;
     return pathPidFile;
 }
 
-void CreatePidFile(const fs::path &path, pid_t pid)
+void CreatePidFile(const boost::filesystem::path &path, pid_t pid)
 {
-    FILE* file = fsbridge::fopen(path, "w");
+    FILE* file = fopen(path.string().c_str(), "w");
     if (file)
     {
         fprintf(file, "%d\n", pid);
@@ -640,7 +641,7 @@ void CreatePidFile(const fs::path &path, pid_t pid)
 }
 #endif
 
-bool RenameOver(fs::path src, fs::path dest)
+bool RenameOver(boost::filesystem::path src, boost::filesystem::path dest)
 {
 #ifdef WIN32
     return MoveFileExA(src.string().c_str(), dest.string().c_str(),
@@ -656,13 +657,13 @@ bool RenameOver(fs::path src, fs::path dest)
  * Specifically handles case where path p exists, but it wasn't possible for the user to
  * write to the parent directory.
  */
-bool TryCreateDirectory(const fs::path& p)
+bool TryCreateDirectory(const boost::filesystem::path& p)
 {
     try
     {
-        return fs::create_directory(p);
-    } catch (const fs::filesystem_error&) {
-        if (!fs::exists(p) || !fs::is_directory(p))
+        return boost::filesystem::create_directory(p);
+    } catch (const boost::filesystem::filesystem_error&) {
+        if (!boost::filesystem::exists(p) || !boost::filesystem::is_directory(p))
             throw;
     }
 
@@ -769,11 +770,11 @@ void ShrinkDebugFile()
     // Amount of debug.log to save at end when shrinking (must fit in memory)
     constexpr size_t RECENT_DEBUG_HISTORY_SIZE = 10 * 1000000;
     // Scroll debug.log if it's getting too big
-    fs::path pathLog = GetDataDir() / "debug.log";
-    FILE* file = fsbridge::fopen(pathLog, "r");
+    boost::filesystem::path pathLog = GetDataDir() / "debug.log";
+    FILE* file = fopen(pathLog.string().c_str(), "r");
     // If debug.log file is more than 10% bigger the RECENT_DEBUG_HISTORY_SIZE
     // trim it down by saving only the last RECENT_DEBUG_HISTORY_SIZE bytes
-    if (file && fs::file_size(pathLog) > 11 * (RECENT_DEBUG_HISTORY_SIZE / 10))
+    if (file && boost::filesystem::file_size(pathLog) > 11 * (RECENT_DEBUG_HISTORY_SIZE / 10))
     {
         // Restart the file with some of the end
         std::vector<char> vch(RECENT_DEBUG_HISTORY_SIZE, 0);
@@ -781,7 +782,7 @@ void ShrinkDebugFile()
         int nBytes = fread(vch.data(), 1, vch.size(), file);
         fclose(file);
 
-        file = fsbridge::fopen(pathLog, "w");
+        file = fopen(pathLog.string().c_str(), "w");
         if (file)
         {
             fwrite(vch.data(), 1, nBytes, file);
@@ -793,8 +794,10 @@ void ShrinkDebugFile()
 }
 
 #ifdef WIN32
-fs::path GetSpecialFolderPath(int nFolder, bool fCreate)
+boost::filesystem::path GetSpecialFolderPath(int nFolder, bool fCreate)
 {
+    namespace fs = boost::filesystem;
+
     char pszPath[MAX_PATH] = "";
 
     if(SHGetSpecialFolderPathA(NULL, pszPath, nFolder, fCreate))
@@ -854,9 +857,9 @@ void SetupEnvironment()
     // The path locale is lazy initialized and to avoid deinitialization errors
     // in multithreading environments, it is set explicitly by the main thread.
     // A dummy locale is used to extract the internal default locale, used by
-    // fs::path, which is then used to explicitly imbue the path.
-    std::locale loc = fs::path::imbue(std::locale::classic());
-    fs::path::imbue(loc);
+    // boost::filesystem::path, which is then used to explicitly imbue the path.
+    std::locale loc = boost::filesystem::path::imbue(std::locale::classic());
+    boost::filesystem::path::imbue(loc);
 }
 
 bool SetupNetworking()
@@ -889,10 +892,4 @@ std::string CopyrightHolders(const std::string& strPrefix)
         strCopyrightHolders += "\n" + strPrefix + "The Bitcoin Core developers";
     }
     return strCopyrightHolders;
-}
-
-// Obtain the application startup time (used for uptime calculation)
-int64_t GetStartupTime()
-{
-    return nStartupTime;
 }

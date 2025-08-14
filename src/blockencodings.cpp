@@ -53,10 +53,7 @@ ReadStatus PartiallyDownloadedBlock::InitData(const CBlockHeaderAndShortTxIDs& c
     if (cmpctblock.shorttxids.size() + cmpctblock.prefilledtxn.size() > MAX_BLOCK_BASE_SIZE / MIN_TRANSACTION_BASE_SIZE)
         return READ_STATUS_INVALID;
 
-    if (!header.IsNull() || !txn_available.empty()) {
-        return READ_STATUS_FAILED;
-    }
-
+    assert(header.IsNull() && txn_available.empty());
     header = cmpctblock.header;
     txn_available.resize(cmpctblock.BlockTxCount());
 
@@ -173,19 +170,13 @@ ReadStatus PartiallyDownloadedBlock::InitData(const CBlockHeaderAndShortTxIDs& c
 }
 
 bool PartiallyDownloadedBlock::IsTxAvailable(size_t index) const {
-    if (header.IsNull()) {
-        return false;
-    }
-
+    assert(!header.IsNull());
     assert(index < txn_available.size());
     return txn_available[index] ? true : false;
 }
 
 ReadStatus PartiallyDownloadedBlock::FillBlock(CBlock& block, const std::vector<CTransactionRef>& vtx_missing) {
-    if (header.IsNull()) {
-        return READ_STATUS_INVALID;
-    }
-
+    assert(!header.IsNull());
     uint256 hash = header.GetHash();
     block = header;
     block.vtx.resize(txn_available.size());

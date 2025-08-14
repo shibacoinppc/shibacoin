@@ -7,10 +7,9 @@
  */
 #ifndef SHIBACOIN_WALLET_UTIL_H
 #define SHIBACOIN_WALLET_UTIL_H
-
-#include "fs.h"
+#include <boost/filesystem/path.hpp>
 #include "util.h"
 
-fs::path GetBackupDirFromInput(std::string strUserFilename);
+boost::filesystem::path GetBackupDirFromInput(std::string strUserFilename);
 
 #endif // SHIBACOIN_WALLET_UTIL_H
