@@ -48,7 +48,7 @@ bool fWalletRbf = DEFAULT_WALLET_RBF;
 
 const char * DEFAULT_WALLET_DAT = "wallet.dat";
 const uint32_t BIP32_HARDENED_KEY_LIMIT = 0x80000000;
-const uint32_t BIP44_COIN_TYPE = 3;
+const uint32_t BIP44_COIN_TYPE = 4474;  //PR #1919 SLIP-0044 ShibaCoin
 
 /**
  * Fees smaller than this (in satoshi) are considered zero fee (for transaction creation)
