@@ -161,7 +161,7 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0xe4590482ff6d963b077846c58c3714a1d06f0755d636efc2531cdecab58a0f45"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
-        vSeeds.push_back(CDNSSeedData("seeds.shibainucoin.net", "seeds.shibacoinshic.org"));
+        vSeeds.push_back(CDNSSeedData("seednodes.shibacoinshic.org", "seeds.shibacoinshic.org"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,63); // Addresses start with S
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,22);
@@ -181,9 +181,9 @@ public:
             ( 0, uint256S("0xff271edcc83f7d71e7a4e4b0a43b386a188e1470a28671cdbdc47e900118ac7f"))
             ( 100, uint256S("0x4c5ad0c33d31bdbdb6f353231bfd95916ff380c648e6c3ff0a07513a34f7965b"))
             ( 1000, uint256S("0x1678b9c5af79d2d42264ba6ca6a0c94cd748ee0172b616b912aac0b62b7565ed"))
-	    ( 20000, uint256S("0x2035d66dd969aa8ba3342e45dc949f032ddd5cca934a4d5f9c209958bcf455c6"))
-	    ( 24000, uint256S("0xc771781bb5c79f53d17fcf4f541289e154cae38e4e4f4419ef1fa4c4c8be1d0e")) //Pre-AuxPoW activation
-	    ( 25800, uint256S("0x91e9d5d9c4ac1f236c1baf5f62fc8a96cfc0e844ae4739516ea53e0d6bb78f46")) //Post-AuxPoW checkpoint
+	        ( 20000, uint256S("0x2035d66dd969aa8ba3342e45dc949f032ddd5cca934a4d5f9c209958bcf455c6"))
+	        ( 24000, uint256S("0xc771781bb5c79f53d17fcf4f541289e154cae38e4e4f4419ef1fa4c4c8be1d0e")) //Pre-AuxPoW activation
+	        ( 25800, uint256S("0x91e9d5d9c4ac1f236c1baf5f62fc8a96cfc0e844ae4739516ea53e0d6bb78f46")) //Post-AuxPoW checkpoint
         };
 
         chainTxData = ChainTxData{ };
