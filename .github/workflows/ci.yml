@@ -154,7 +154,7 @@ jobs:
       - name: Install Python dependencies
         run: |
           python3 -m pip install --upgrade pip setuptools==70.3.0
-          python3 -m pip install lief==0.11.5
+          python3 -m pip install lief==0.13.0
 
       - name: Install additional packages
         run: |
